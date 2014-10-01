@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Mi Aplicación app_name atribute</string>
     <string name="title">Mi Aplicación</string>
     <string name="hello_world">Hola Mundo! Me llamo Dima</string>
 </resources>

@@ -6,7 +6,6 @@
       <module fileurl="file://$PROJECT_DIR$/HelloApp/HelloApp.iml" filepath="$PROJECT_DIR$/HelloApp/HelloApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyFirstApp/MyFirstApp.iml" filepath="$PROJECT_DIR$/MyFirstApp/MyFirstApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/SimpleCalc/SimpleCalc.iml" filepath="$PROJECT_DIR$/SimpleCalc/SimpleCalc.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SimpleCalcTest/SimpleCalcTest.iml" filepath="$PROJECT_DIR$/SimpleCalcTest/SimpleCalcTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/WikiNotes/WikiNotes.iml" filepath="$PROJECT_DIR$/WikiNotes/WikiNotes.iml" />
     </modules>
   </component>

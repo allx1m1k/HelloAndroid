@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://D:/WORK/JAVA/Android/40.Labs/401.Week1/DevelopmentEnvironment/Misc/DeskClock/DeskClock.iml" filepath="D:/WORK/JAVA/Android/40.Labs/401.Week1/DevelopmentEnvironment/Misc/DeskClock/DeskClock.iml" />
       <module fileurl="file://D:/IdeaProjects/HelloAndroid/HelloAndroid.iml" filepath="D:/IdeaProjects/HelloAndroid/HelloAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyFirstApp/MyFirstApp.iml" filepath="$PROJECT_DIR$/MyFirstApp/MyFirstApp.iml" />
     </modules>

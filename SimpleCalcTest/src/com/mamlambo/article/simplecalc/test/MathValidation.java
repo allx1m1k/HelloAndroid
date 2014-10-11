@@ -62,6 +62,7 @@ public class MathValidation extends
     private static final String ADD_RESULT = "98";
     private static final String ADD_DECIMAL_RESULT = "79.5";
     private static final String ADD_NEGATIVE_RESULT = "52";
+    private static final String ADD_POSITIVE_RESULT = "96";
     private static final String MULTIPLY_RESULT = "1776";
 
     public void testAddValues() {
@@ -92,8 +93,8 @@ public class MathValidation extends
         sendKeys(NUMBER_NEG_22 + NUMBER_74 + "ENTER");
 
         String mathResult = result.getText().toString();
-        assertTrue("Add result should be " + ADD_NEGATIVE_RESULT + " but was "
-                + mathResult, mathResult.equals(ADD_NEGATIVE_RESULT));
+        assertTrue("Add result should be " + ADD_POSITIVE_RESULT + " but was "
+                + mathResult, mathResult.equals(ADD_POSITIVE_RESULT));
     }
     
 

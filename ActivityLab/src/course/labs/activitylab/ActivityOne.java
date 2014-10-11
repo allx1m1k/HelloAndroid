@@ -2,7 +2,9 @@ package course.labs.activitylab;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.audiofx.BassBoost;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -10,6 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class ActivityOne extends Activity {
+
+    //public static final String CUSTOM_ACTION = "course.labs.activitylab.ActivityTwo";
 
 	// Use these as keys when you're saving state between reconfigurations
 	private static final String RESTART_KEY = "restart";
@@ -57,18 +61,23 @@ public class ActivityOne extends Activity {
 
 		Button launchActivityTwoButton = (Button) findViewById(R.id.bLaunchActivityTwo);
 		launchActivityTwoButton.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				// TODO:
 				// Launch Activity Two
 				// Hint: use Context's startActivity() method
+                try {
+                    // Create an intent stating which Activity you would like to
+                    // start
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    //Intent i1 = new Intent(course.labs.activitylab.ActivityTwo.class);
 
-				// Create an intent stating which Activity you would like to
-				// start
-				Intent intent = null;
+                    // Launch the Activity using the intent
+                    startActivity(intent);
 
-				// Launch the Activity using the intent
+                } catch (Exception e) {
+                    Log.e(TAG, e.toString());
+                }
 
 			}
 		});

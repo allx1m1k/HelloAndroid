@@ -61,11 +61,10 @@ public class ActivityTwo extends Activity {
 
 			@Override
 			public void onClick(View v) {
-
 				// TODO:
 				// This function closes Activity Two
 				// Hint: use Context's finish() method
-			
+			    finish();
 			}
 		});
 

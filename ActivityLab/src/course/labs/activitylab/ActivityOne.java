@@ -16,10 +16,10 @@ public class ActivityOne extends Activity {
     //public static final String CUSTOM_ACTION = "course.labs.activitylab.ActivityTwo";
 
 	// Use these as keys when you're saving state between reconfigurations
+    private static final String CREATE_KEY = "create";
 	private static final String RESTART_KEY = "restart";
-	private static final String RESUME_KEY = "resume";
-	private static final String START_KEY = "start";
-	private static final String CREATE_KEY = "create";
+    private static final String START_KEY = "start";
+    private static final String RESUME_KEY = "resume";
 
 	// String for LogCat documentation
 	private final static String TAG = "Lab-ActivityOne";
@@ -87,11 +87,13 @@ public class ActivityOne extends Activity {
 
 		// Has previous state been saved?
 		if (savedInstanceState != null) {
-
 			// TODO:
 			// Restore value of counters from saved state
 			// Only need 4 lines of code, one for every count variable
-
+            mCreate = savedInstanceState.getInt(CREATE_KEY);
+            mRestart = savedInstanceState.getInt(RESTART_KEY);
+            mStart = savedInstanceState.getInt(START_KEY);
+            mResume = savedInstanceState.getInt(RESUME_KEY);
 		}
 
 		// Emit LogCat message
@@ -178,8 +180,14 @@ public class ActivityOne extends Activity {
 		// TODO:
 		// Save state information with a collection of key-value pairs
 		// 4 lines of code, one for every count variable
+        savedInstanceState.putInt(CREATE_KEY, mCreate);
+        savedInstanceState.putInt(RESTART_KEY, mRestart);
+        savedInstanceState.putInt(START_KEY, mStart);
+        savedInstanceState.putInt(RESUME_KEY, mResume);
 
-	}
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
 
 	// Updates the displayed counters
 	// This method expects that the counters and TextView variables use the

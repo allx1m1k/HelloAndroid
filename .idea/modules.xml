@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/SimpleCalc/SimpleCalc.iml" filepath="$PROJECT_DIR$/SimpleCalc/SimpleCalc.iml" />
       <module fileurl="file://$PROJECT_DIR$/SimpleCalcTest/SimpleCalcTest.iml" filepath="$PROJECT_DIR$/SimpleCalcTest/SimpleCalcTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/WikiNotes/WikiNotes.iml" filepath="$PROJECT_DIR$/WikiNotes/WikiNotes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/activity-lifecycle/activity-lifecycle.iml" filepath="$PROJECT_DIR$/activity-lifecycle/activity-lifecycle.iml" />
     </modules>
   </component>
 </project>

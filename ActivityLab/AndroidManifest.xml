@@ -23,13 +23,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="course.labs.activitylab.ActivityTwo"
+            android:name=".ActivityTwo"
             android:label="@string/title_activity_activity_two" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
         </activity>
     </application>
 

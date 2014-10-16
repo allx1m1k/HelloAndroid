@@ -109,9 +109,14 @@ public class ActivityLoaderActivity extends Activity {
         if (requestCode == GET_TEXT_REQUEST_CODE) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-
                  enteredText = data.getStringExtra("course.labs.intentslab.MyText");
                 Log.i(TAG,"Text in host Activity is: " + enteredText );
+
+                //this will add to default text
+                //mUserTextView.append(enteredText);
+
+                mUserTextView.setText(enteredText);
+
             }
         }
 

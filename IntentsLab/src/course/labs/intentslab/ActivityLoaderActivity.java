@@ -87,14 +87,25 @@ public class ActivityLoaderActivity extends Activity {
 		// will carry out the baseIntent
 		// (HINT: Use the Intent class' createChooser() method)
 		Intent chooserIntent = Intent.createChooser(baseIntent, CHOOSER_TEXT);
+
+        //We we add data
+        //chooserIntent.putExtra("http", Uri.parse(URL));
+        //chooserIntent.setData(Uri.parse(URL));
+        //We will start Chooser
+        //chooserIntent.setAction(Intent.ACTION_VIEW);
+
+        //We add some traces
 		Log.i(TAG,"Chooser Intent Action:" + chooserIntent.getAction());
+        Log.i(TAG,"Chooser Intent URI data is:" + Uri.parse(URL));
+        Log.i(TAG,"Chooser Intent data is:" + chooserIntent.getData());
+
 
 		// TODO - Start the chooser Activity, using the chooser intent
 
         // Verify the intent will resolve to at least one activity
-        if (chooserIntent.resolveActivity(getPackageManager()) != null) {
+        //if (chooserIntent.resolveActivity(getPackageManager()) != null) {
             startActivity(chooserIntent);
-        }
+        //}
 	}
     
 	@Override

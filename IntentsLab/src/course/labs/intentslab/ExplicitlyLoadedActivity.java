@@ -14,6 +14,7 @@ public class ExplicitlyLoadedActivity extends Activity {
 	static private final String TAG = "Lab-Intents";
 
 	private EditText mEditText;
+    private String userInput;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +48,18 @@ public class ExplicitlyLoadedActivity extends Activity {
 		Log.i(TAG,"Entered enterClicked()");
 		
 		// TODO - Save user provided input from the EditText field
+        userInput = mEditText.getText().toString();
+        Log.i(TAG,"Entered text in Explicit Activity is " + userInput);
 
 		// TODO - Create a new intent and save the input from the EditText field as an extra
-		
+		Intent feedbackIntent = new Intent();
+        feedbackIntent.putExtra("course.labs.intentslab.MyText", userInput);
+
 		// TODO - Set Activity's result with result code RESULT_OK
-		
+        setResult(RESULT_OK, feedbackIntent);
+        Log.i(TAG,"Before finish() in Explicit Activity is " + userInput);
 		// TODO - Finish the Activity
+        finish();
 
 	}
 }

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ActivityLab/ActivityLab.iml" filepath="$PROJECT_DIR$/ActivityLab/ActivityLab.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DangerousApp/DangerousApp.iml" filepath="$PROJECT_DIR$/DangerousApp/DangerousApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/DeskClock/DeskClock.iml" filepath="$PROJECT_DIR$/DeskClock/DeskClock.iml" />
       <module fileurl="file://$PROJECT_DIR$/HelloApp/HelloApp.iml" filepath="$PROJECT_DIR$/HelloApp/HelloApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/IntentsLab/IntentsLab.iml" filepath="$PROJECT_DIR$/IntentsLab/IntentsLab.iml" />

@@ -38,9 +38,7 @@ public class ActivityLoaderActivity extends Activity {
 			// Call startExplicitActivation() when pressed
 			@Override
 			public void onClick(View v) {
-				
 				startExplicitActivation();
-                
 			}
 		});
         
@@ -51,19 +49,15 @@ public class ActivityLoaderActivity extends Activity {
 			// Call startImplicitActivation() when pressed
 			@Override
 			public void onClick(View v) {
-                
 				startImplicitActivation();
-                
 			}
 		});
         
 	}
-    
 	
 	// Start the ExplicitlyLoadedActivity
-	
 	private void startExplicitActivation() {
-        
+
 		Log.i(TAG,"Entered startExplicitActivation()");
 		
 		// TODO - Create a new intent to launch the ExplicitlyLoadedActivity class
@@ -73,7 +67,6 @@ public class ActivityLoaderActivity extends Activity {
 	}
     
 	// Start a Browser Activity to view a web page or its URL
-	
 	private void startImplicitActivation() {
         
 		Log.i(TAG, "Entered startImplicitActivation()");
@@ -103,9 +96,9 @@ public class ActivityLoaderActivity extends Activity {
 		// TODO - Start the chooser Activity, using the chooser intent
 
         // Verify the intent will resolve to at least one activity
-        //if (chooserIntent.resolveActivity(getPackageManager()) != null) {
+        if (chooserIntent.resolveActivity(getPackageManager()) != null) {
             startActivity(chooserIntent);
-        //}
+        }
 	}
     
 	@Override
@@ -122,19 +115,10 @@ public class ActivityLoaderActivity extends Activity {
             if (resultCode == RESULT_OK) {
                  enteredText = data.getStringExtra("course.labs.intentslab.MyText");
                 Log.i(TAG,"Text in host Activity is: " + enteredText );
-
                 //this will add to default text
                 //mUserTextView.append(enteredText);
-
                 mUserTextView.setText(enteredText);
-
             }
         }
-
-	
-    
-    
-    
-    
     }
 }

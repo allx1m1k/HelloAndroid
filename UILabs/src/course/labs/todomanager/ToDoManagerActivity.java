@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -49,22 +50,23 @@ public class ToDoManagerActivity extends ListActivity {
 		getListView().setFooterDividersEnabled(true);
 
 		// TODO - Inflate footerView for footer_view.xml file
-        //Dima: get access to LAyoutInfletor
+        LayoutInflater inflater= LayoutInflater.from(ToDoManagerActivity.this);
+        TextView footerView = (TextView)inflater.inflate(R.layout.footer_view, null);
 
-        //footerView = (ViewGroup) findViewById(R.id.footerView);
-
-        TextView footerView = null;
-
+        /*
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.footer_view, null);
-
+        inflater.inflate(getListView(),footerView);
+        */
 
         // NOTE: You can remove this block once you've implemented the assignment
 		if (null == footerView) {
 			return;
 		}
 		// TODO - Add footerView to ListView
+        ListView lv = getListView();
+        lv.addFooterView(footerView);
 
+        setListAdapter(new ArrayAdapter<String>(this, R.layout.footer_view));
 
 
 		footerView.setOnClickListener(new OnClickListener() {

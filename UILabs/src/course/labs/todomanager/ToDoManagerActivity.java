@@ -32,8 +32,9 @@ public class ToDoManagerActivity extends ListActivity {
 	private static final int ADD_TODO_ITEM_REQUEST = 0;
 	private static final String FILE_NAME = "TodoManagerActivityData.txt";
 	private static final String TAG = "Lab-UserInterface";
+    public Intent addItemActivity;
 
-	// IDs for menu items
+    // IDs for menu items
 	private static final int MENU_DELETE = Menu.FIRST;
 	private static final int MENU_DUMP = Menu.FIRST + 1;
 
@@ -66,20 +67,24 @@ public class ToDoManagerActivity extends ListActivity {
         ListView lv = getListView();
         lv.addFooterView(footerView);
 
-        setListAdapter(new ArrayAdapter<String>(this, R.layout.footer_view));
-
-
 		footerView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
-				Log.i(TAG,"Entered footerView.OnClickListener.onClick()");
+				//Log.i(TAG,"Entered footerView.OnClickListener.onClick()");
 
 				//TODO - Implement OnClick().
+                addItemActivity = new Intent(ToDoManagerActivity.this, AddToDoActivity.class);
+
+                //startActivityForResult(explicitIntent, GET_TEXT_REQUEST_CODE);
+                startActivityForResult(addItemActivity, ADD_TODO_ITEM_REQUEST);
+
 			}
 		});
 
 		// TODO - Attach the adapter to this ListActivity's ListView
+        //setListAdapter(new ArrayAdapter<String>(this, R.layout.footer_view));
+        //setListAdapter(new ToDoListAdapter(this));
+        setListAdapter(mAdapter);
 		
 	}
 

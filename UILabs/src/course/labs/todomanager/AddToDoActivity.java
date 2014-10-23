@@ -54,7 +54,7 @@ public class AddToDoActivity extends Activity {
 		mStatusRadioGroup = (RadioGroup) findViewById(R.id.statusGroup);
 		dateView = (TextView) findViewById(R.id.date);
 		timeView = (TextView) findViewById(R.id.time);
-
+        Log.i(TAG,"Entered AddToDOActivity");
 		// Set the default date and time
 
 		setDefaultDateTime();

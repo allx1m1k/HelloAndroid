@@ -11,15 +11,17 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.zip.Inflater;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.view.View.OnClickListener;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import course.labs.todomanager.ToDoItem.Priority;
 import course.labs.todomanager.ToDoItem.Status;
@@ -47,16 +49,24 @@ public class ToDoManagerActivity extends ListActivity {
 		getListView().setFooterDividersEnabled(true);
 
 		// TODO - Inflate footerView for footer_view.xml file
+        //Dima: get access to LAyoutInfletor
 
-		TextView footerView = null;
+        //footerView = (ViewGroup) findViewById(R.id.footerView);
 
-		// NOTE: You can remove this block once you've implemented the assignment
+        TextView footerView = null;
+
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater.inflate(R.layout.footer_view, null);
+
+
+        // NOTE: You can remove this block once you've implemented the assignment
 		if (null == footerView) {
 			return;
 		}
 		// TODO - Add footerView to ListView
 
-		
+
+
 		footerView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

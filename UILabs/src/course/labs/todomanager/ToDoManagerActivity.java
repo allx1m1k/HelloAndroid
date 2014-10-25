@@ -51,7 +51,7 @@ public class ToDoManagerActivity extends ListActivity {
 		// Put divider between ToDoItems and FooterView
 		getListView().setFooterDividersEnabled(true);
 
-		// TODO - Inflate footerView for footer_view.xml file
+		// DONE - Inflate footerView for footer_view.xml file
         LayoutInflater inflater= LayoutInflater.from(ToDoManagerActivity.this);
         TextView footerView = (TextView)inflater.inflate(R.layout.footer_view, null);
 
@@ -64,7 +64,7 @@ public class ToDoManagerActivity extends ListActivity {
 		if (null == footerView) {
 			return;
 		}
-		// TODO - Add footerView to ListView
+		// DONE - Add footerView to ListView
         ListView lv = getListView();
         lv.addFooterView(footerView);
 
@@ -73,7 +73,7 @@ public class ToDoManagerActivity extends ListActivity {
 			public void onClick(View v) {
 				//Log.i(TAG,"Entered footerView.OnClickListener.onClick()");
 
-				//TODO - Implement OnClick().
+				//DONE - Implement OnClick().
                 addItemActivity = new Intent(ToDoManagerActivity.this, AddToDoActivity.class);
 
                 //startActivityForResult(explicitIntent, GET_TEXT_REQUEST_CODE);
@@ -107,6 +107,8 @@ public class ToDoManagerActivity extends ListActivity {
             if (resultCode == RESULT_OK) {
                 enteredData = data.getStringExtra("course.labs.todomanager.MyItem");
                 Log.i(TAG,"Data in host Activity is: " + enteredData );
+                Log.i(TAG,"Adapter in host Activity is: " + mAdapter.toString());
+                Log.i(TAG,"Adapters ToDoItems amount in host Activity is: " + mAdapter.getCount());
                 //this will add to default text
                 //mUserTextView.append(enteredText);
                 //getListView().setText(enteredText);

@@ -33,6 +33,7 @@ public class ToDoManagerActivity extends ListActivity {
 	private static final String FILE_NAME = "TodoManagerActivityData.txt";
 	private static final String TAG = "Lab-UserInterface";
     public Intent addItemActivity;
+    private String enteredData;
 
     // IDs for menu items
 	private static final int MENU_DELETE = Menu.FIRST;
@@ -84,6 +85,9 @@ public class ToDoManagerActivity extends ListActivity {
 		// TODO - Attach the adapter to this ListActivity's ListView
         //setListAdapter(new ArrayAdapter<String>(this, R.layout.footer_view));
         //setListAdapter(new ToDoListAdapter(this));
+
+        // Set the list adapter for this ListFragment
+        //setListAdapter(new ArrayAdapter<String>(getActivity(), layout, FRIENDS));
         setListAdapter(mAdapter);
 		
 	}
@@ -98,6 +102,16 @@ public class ToDoManagerActivity extends ListActivity {
 		// Create a new ToDoItem from the data Intent
 		// and then add it to the adapter
 
+        if (requestCode == ADD_TODO_ITEM_REQUEST) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                enteredData = data.getStringExtra("course.labs.todomanager.MyItem");
+                Log.i(TAG,"Data in host Activity is: " + enteredData );
+                //this will add to default text
+                //mUserTextView.append(enteredText);
+                //getListView().setText(enteredText);
+            }
+        }
 	}
 
 	// Do not modify below here

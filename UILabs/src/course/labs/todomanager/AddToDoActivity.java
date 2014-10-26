@@ -110,6 +110,8 @@ public class AddToDoActivity extends Activity {
 				// DONE - Reset data to default values
                 setDefaultText();
                 setDefaultDateTime();
+                mDefaultStatusButton.setChecked(true);
+                mDefaultPriorityButton.setChecked(true);
 
 			}
 		});

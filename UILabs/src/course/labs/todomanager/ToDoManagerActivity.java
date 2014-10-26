@@ -82,7 +82,7 @@ public class ToDoManagerActivity extends ListActivity {
 			}
 		});
 
-		// TODO - Attach the adapter to this ListActivity's ListView
+		// DONE - Attach the adapter to this ListActivity's ListView
         //setListAdapter(new ArrayAdapter<String>(this, R.layout.footer_view));
         //setListAdapter(new ToDoListAdapter(this));
 
@@ -97,7 +97,7 @@ public class ToDoManagerActivity extends ListActivity {
 
 		Log.i(TAG,"Entered onActivityResult()");
 
-		// TODO - Check result code and request code
+		// DONE - Check result code and request code
 		// if user submitted a new ToDoItem
 		// Create a new ToDoItem from the data Intent
 		// and then add it to the adapter

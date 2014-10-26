@@ -105,10 +105,15 @@ public class ToDoManagerActivity extends ListActivity {
         if (requestCode == ADD_TODO_ITEM_REQUEST) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-                enteredData = data.getStringExtra("course.labs.todomanager.MyItem");
-                Log.i(TAG,"Data in host Activity is: " + enteredData );
+                //Dima has created ToDoItem from Intent
+                ToDoItem item = new ToDoItem(data);
+                //Dima has added new Item to Adapter
+                mAdapter.add(item);
                 Log.i(TAG,"Adapter in host Activity is: " + mAdapter.toString());
                 Log.i(TAG,"Adapters ToDoItems amount in host Activity is: " + mAdapter.getCount());
+                //Dima has force Adapter to respond that his status has changed
+                mAdapter.notifyDataSetChanged();
+
                 //this will add to default text
                 //mUserTextView.append(enteredText);
                 //getListView().setText(enteredText);

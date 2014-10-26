@@ -108,6 +108,7 @@ public class AddToDoActivity extends Activity {
 				Log.i(TAG, "Entered resetButton.OnClickListener.onClick()");
 
 				// DONE - Reset data to default values
+                setDefaultText();
                 setDefaultDateTime();
 
 			}
@@ -301,5 +302,9 @@ public class AddToDoActivity extends Activity {
 
     private void gotCancel(){
         finish();
+    }
+
+    private void setDefaultText() {
+        mTitleText.setText("");
     }
 }

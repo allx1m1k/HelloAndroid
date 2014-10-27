@@ -5,17 +5,19 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ModernUIManager extends Activity {
 
-    static private final String TAG = "ModernUIManager";
+    static private final String TAG = "Lab-ModernUILab";
     private static final int ALERTTAG = 0;
     private DialogFragment mDialog;
     /**
@@ -73,22 +75,28 @@ public class ModernUIManager extends Activity {
     // Abort or complete ShutDown based on value of shouldContinue
     private void continueWork(boolean shouldContinue) {
         Log.i(TAG, "Entered continueWork");
-/*        if (shouldContinue) {
+   if (shouldContinue) {
 
-            // Prevent further interaction with the ShutDown Butotn
-            mShutdownButton.setEnabled(false);
+       //Create a new intent to launch the WebViewActivity class
+       Intent explicitIntent = new Intent(this, WebViewActivity.class);
+       //Start an Activity using that intent
+       Log.i(TAG, "Entered continueWork show WebView");
+       startActivity(explicitIntent);
+
+       // Prevent further interaction with the ShutDown Butotn
+            //mShutdownButton.setEnabled(false);
 
             // Show ProgressDialog as shutdown process begins
-            showDialogFragment(PROGRESSTAG);
-
+            //showDialogFragment(PROGRESSTAG);
             // Finish the ShutDown process
-            finishShutdown();
+            //finishShutdown();
 
-        } else { */
+        } else {
 
-            // Abort ShutDown and dismiss dialog
-            mDialog.dismiss();
-/*        } */
+        //Dismiss the dialog and proceed with ModernUIManager
+       Log.i(TAG, "Entered continueWork DON'T show WebView");
+       mDialog.dismiss();
+        }
     }
 
     // Class that creates the AskDialog

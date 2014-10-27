@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ public class ModernUIManager extends Activity {
         Log.i(TAG, "Entered onCreate");
         setContentView(R.layout.main);
         TextView tv = (TextView) findViewById(R.id.text_view);
+        SeekBar sb = (SeekBar) findViewById(R.id.seek_bar);
     }
 
 

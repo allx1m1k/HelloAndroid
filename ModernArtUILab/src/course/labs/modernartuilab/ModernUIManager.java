@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
-public class ModernUIManager extends Activity implements SeekBar.OnSeekBarChangeListener {
+public class ModernUIManager extends Activity {
 
     static private final String TAG = "Lab-ModernUILab";
     private static final int ALERTTAG = 0;
@@ -32,24 +32,26 @@ public class ModernUIManager extends Activity implements SeekBar.OnSeekBarChange
         SeekBar sb = (SeekBar) findViewById(R.id.seek_bar);
         */
         mSeekBar = (SeekBar) findViewById(R.id.seekBar);
-        mSeekBar.setOnSeekBarChangeListener(this);
+        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
-    }
+            //Implementation for methods OnSeekBarChangeListener interface for reacting on changes mSeekBar
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                Log.i(TAG, "Entered changeColor" + progress);
+                changeColor(progress);
+            }
 
-    //Implementation for methods OnSeekBarChangeListener interface for reacting on changes mSeekBar
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        Log.i(TAG, "Entered changeColor" + progress);
-        changeColor(progress);
-    }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
 
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
+            }
 
-    }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
 
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+        });
 
     }
 
@@ -57,7 +59,6 @@ public class ModernUIManager extends Activity implements SeekBar.OnSeekBarChange
     private void changeColor(int progress) {
         Toast.makeText(getApplicationContext(), "You're changing seek bar!", Toast.LENGTH_SHORT).show();
     }
-
 
     // Create Options Menu
     @Override

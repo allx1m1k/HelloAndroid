@@ -6,12 +6,14 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ModernUIManager extends Activity {
@@ -20,6 +22,11 @@ public class ModernUIManager extends Activity {
     private static final int ALERTTAG = 0;
     private DialogFragment mDialog;
     private SeekBar mSeekBar;
+    private TextView mPinkView;
+    private TextView mBlueView;
+    private TextView mGreenView;
+    private TextView mWhiteView;
+    private TextView mYellowView;
     /**
      * Called when the activity is first created.
      */
@@ -28,36 +35,55 @@ public class ModernUIManager extends Activity {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "Entered onCreate");
         setContentView(R.layout.main);
-        /*TextView tv = (TextView) findViewById(R.id.text_view);
+        /*
         SeekBar sb = (SeekBar) findViewById(R.id.seek_bar);
         */
+        mPinkView = (TextView) findViewById(R.id.pinkView);
+        mBlueView = (TextView) findViewById(R.id.blueView);
+        mGreenView = (TextView) findViewById(R.id.greenView);
+        mWhiteView = (TextView) findViewById(R.id.whiteView);
+        mYellowView = (TextView) findViewById(R.id.yellowView);
         mSeekBar = (SeekBar) findViewById(R.id.seekBar);
+        //set seekBar from 0 - 255
+        mSeekBar.setMax(255);
+        //create an object listener
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
             //Implementation for methods OnSeekBarChangeListener interface for reacting on changes mSeekBar
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 Log.i(TAG, "Entered changeColor" + progress);
-                changeColor(progress);
+                //changeViewColor(progress);
+                int seek = seekBar.getProgress();
+                mPinkView.setBackgroundColor(changeColor(0xFF007F, 0xFF6633, seek));
+                mBlueView.setBackgroundColor(changeColor(0x0000FF, 0x6600CC, seek));
+                mGreenView.setBackgroundColor(changeColor(0x00FF00, 0x00FF99, seek));
+                mWhiteView.setBackgroundColor(changeColor(0xFFFFFF, 0xFFFFFF, seek));
+                mYellowView.setBackgroundColor(changeColor(0xFF7F00, 0xFFCC66, seek));
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
 
         });
 
     }
 
-    //Change Color method
-    private void changeColor(int progress) {
-        Toast.makeText(getApplicationContext(), "You're changing seek bar!", Toast.LENGTH_SHORT).show();
+    //Method for changing colors
+    public int changeColor(int color1, int color2, int progress) {
+        int deltaRed = Color.red(color2) - Color.red(color1);
+        int deltaGreen = Color.green(color2) - Color.green(color1);
+        int deltaBlue = Color.blue(color2) - Color.blue(color1);
+
+        int red = Color.red(color1) + (deltaRed * progress / 100);
+        int green = Color.green(color1) + (deltaGreen * progress / 100);
+        int blue = Color.blue(color1) + (deltaBlue * progress / 100);
+
+        return Color.rgb(red, green, blue);
     }
 
     // Create Options Menu

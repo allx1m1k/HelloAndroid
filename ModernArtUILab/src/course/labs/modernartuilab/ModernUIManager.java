@@ -11,16 +11,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.webkit.WebView;
 import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-public class ModernUIManager extends Activity {
+public class ModernUIManager extends Activity implements SeekBar.OnSeekBarChangeListener {
 
     static private final String TAG = "Lab-ModernUILab";
     private static final int ALERTTAG = 0;
     private DialogFragment mDialog;
+    private SeekBar mSeekBar;
     /**
      * Called when the activity is first created.
      */
@@ -32,7 +31,31 @@ public class ModernUIManager extends Activity {
         /*TextView tv = (TextView) findViewById(R.id.text_view);
         SeekBar sb = (SeekBar) findViewById(R.id.seek_bar);
         */
+        mSeekBar = (SeekBar) findViewById(R.id.seekBar);
+        mSeekBar.setOnSeekBarChangeListener(this);
 
+    }
+
+    //Implementation for methods OnSeekBarChangeListener interface for reacting on changes mSeekBar
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        Log.i(TAG, "Entered changeColor" + progress);
+        changeColor(progress);
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    //Change Color method
+    private void changeColor(int progress) {
+        Toast.makeText(getApplicationContext(), "You're changing seek bar!", Toast.LENGTH_SHORT).show();
     }
 
 

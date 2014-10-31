@@ -34,7 +34,7 @@ public class WebViewActivity extends Activity {
         mWebView.setWebViewClient(new HelloWebViewClient());
 
         mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.loadUrl("http://www.google.com");
+        mWebView.loadUrl("http://www.moma.org");
     }
 
     @Override

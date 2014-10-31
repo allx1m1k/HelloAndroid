@@ -51,7 +51,7 @@ public class ModernUIManager extends Activity {
             //Implementation for methods OnSeekBarChangeListener interface for reacting on changes mSeekBar
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Log.i(TAG, "Entered changeColor" + progress);
+                Log.i(TAG, "Entered changeColor");
                 //changeViewColor(progress);
                 int seek = seekBar.getProgress();
                 mPinkView.setBackgroundColor(changeColor(0xFF007F, 0xFF6633, seek));
@@ -101,8 +101,10 @@ public class ModernUIManager extends Activity {
         Log.i(TAG, "Entered onOptionsItemSelected");
         switch (item.getItemId()) {
             case R.id.moreInfo:
+                /*
                 Toast.makeText(getApplicationContext(), "User have asked for more info. Dialog have to appear!",
                         Toast.LENGTH_SHORT).show();
+                 */
                 showDialogFragment(ALERTTAG);
                 return true;
             default:
@@ -136,20 +138,11 @@ public class ModernUIManager extends Activity {
        //Start an Activity using that intent
        Log.i(TAG, "Entered continueWork show WebView");
        startActivity(explicitIntent);
-
-       // Prevent further interaction with the ShutDown Butotn
-            //mShutdownButton.setEnabled(false);
-
-            // Show ProgressDialog as shutdown process begins
-            //showDialogFragment(PROGRESSTAG);
-            // Finish the ShutDown process
-            //finishShutdown();
-
-        } else {
-
-        //Dismiss the dialog and proceed with ModernUIManager
-       Log.i(TAG, "Entered continueWork DON'T show WebView");
-       mDialog.dismiss();
+        }
+        else {
+            //Dismiss the dialog and proceed with ModernUIManager
+            Log.i(TAG, "Entered continueWork DON'T show WebView");
+            mDialog.dismiss();
         }
     }
 
@@ -165,13 +158,15 @@ public class ModernUIManager extends Activity {
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             Log.i(TAG, "Entered onCreateDialog");
             return new AlertDialog.Builder(getActivity())
-                    .setMessage("Do you really want to exit?")
+                    .setMessage(new StringBuilder ("Inspired by the works of artists " + "\r\n" +
+                            "such as Piet Mondrian and Ben Nicholson." + "\r\n" + "Click below to learn more!")
+                    )
 
                             // User cannot dismiss dialog by hitting back button
                     .setCancelable(false)
 
                             // Set up No Button
-                    .setNegativeButton("No",
+                    .setNegativeButton("Not Now",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                                     int id) {
@@ -180,7 +175,7 @@ public class ModernUIManager extends Activity {
                             })
 
                             // Set up Yes Button
-                    .setPositiveButton("Yes",
+                    .setPositiveButton("Visit MOMA",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(
                                         final DialogInterface dialog, int id) {

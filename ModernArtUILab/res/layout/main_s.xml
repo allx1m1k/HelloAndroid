@@ -2,9 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="4dp" >
-    
-    <TextView 
+    android:layout_margin="4dp"
+    android:clickable="false">
+
+    <TextView
         android:id="@+id/pinkView"
         android:layout_width="@dimen/width_left"
         android:layout_height="100dp"
@@ -32,7 +33,7 @@
         android:layout_toRightOf="@+id/pinkView"
         android:layout_marginLeft="4dp"
         />
-    
+
     <TextView
         android:id="@+id/whiteView"
         android:layout_width="wrap_content"
@@ -44,8 +45,8 @@
         android:layout_marginTop="4dp"
         android:layout_below="@+id/greenView"
         />
-    
-    <TextView 
+
+    <TextView
         android:id="@+id/yellowView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,7 +59,7 @@
         android:layout_marginBottom="4dp"
         android:layout_marginTop="4dp"
         />
-    
+
     <SeekBar
         android:id="@id/seekBar"
         android:layout_width="match_parent"

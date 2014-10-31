@@ -34,7 +34,7 @@ public class ModernUIManager extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "Entered onCreate");
-        setContentView(R.layout.main);
+        setContentView(R.layout.main_s);
         /*
         SeekBar sb = (SeekBar) findViewById(R.id.seek_bar);
         */

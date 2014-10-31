@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="4dp" >
+    
+    <TextView 
+        android:id="@+id/pinkView"
+        android:layout_width="@dimen/width_left"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#FF007F"/>
+
+    <TextView
+        android:id="@+id/blueView"
+        android:layout_width="@dimen/width_left"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/pinkView"
+        android:layout_marginBottom="4dp"
+        android:background="#0000FF"
+        android:layout_above="@+id/seekBar"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:id="@+id/greenView"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:background="#00FF00"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/pinkView"
+        android:layout_marginLeft="4dp"
+        />
+    
+    <TextView
+        android:id="@+id/whiteView"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:background="#FFFFFF"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/pinkView"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_below="@+id/greenView"
+        />
+    
+    <TextView 
+        android:id="@+id/yellowView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFF00"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/blueView"
+        android:layout_below="@+id/whiteView"
+        android:layout_above="@+id/seekBar"
+        android:layout_marginLeft="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        />
+    
+    <SeekBar
+        android:id="@id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true" >
+    </SeekBar>
+
+</RelativeLayout>

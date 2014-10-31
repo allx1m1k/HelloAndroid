@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyTheme" parent="android:Theme">
+        <item name="android:background">@android:color/holo_blue_bright</item>
+    </style>
+    <style name="KSTheme" parent="android:Theme">
+        <item name="android:background">@android:color/holo_blue_bright</item>
+    </style>
+
+    <dimen name="width_left">150dp</dimen>
+</resources>

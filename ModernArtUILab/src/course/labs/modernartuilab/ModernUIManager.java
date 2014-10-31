@@ -35,6 +35,7 @@ public class ModernUIManager extends Activity {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "Entered onCreate");
         setContentView(R.layout.main_s);
+
         /*
         SeekBar sb = (SeekBar) findViewById(R.id.seek_bar);
         */
@@ -51,7 +52,7 @@ public class ModernUIManager extends Activity {
             //Implementation for methods OnSeekBarChangeListener interface for reacting on changes mSeekBar
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Log.i(TAG, "Entered changeColor");
+                //Log.i(TAG, "Entered changeColor");
                 //changeViewColor(progress);
                 int seek = seekBar.getProgress();
                 mPinkView.setBackgroundColor(changeColor(0xFF007F, 0xFF6633, seek));
@@ -157,9 +158,12 @@ public class ModernUIManager extends Activity {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             Log.i(TAG, "Entered onCreateDialog");
+            //store configuration
+            setRetainInstance(true);
+            //Create Dialog
             return new AlertDialog.Builder(getActivity())
-                    .setMessage(new StringBuilder ("Inspired by the works of artists " + "\r\n" +
-                            "such as Piet Mondrian and Ben Nicholson." + "\r\n" + "Click below to learn more!")
+                    .setMessage(new StringBuilder("Inspired by the works of artists " + "\r\n" +
+                                    "such as Piet Mondrian and Ben Nicholson." + "\r\n" + "Click below to learn more!")
                     )
 
                             // User cannot dismiss dialog by hitting back button
@@ -182,6 +186,19 @@ public class ModernUIManager extends Activity {
                                     ((ModernUIManager) getActivity()).continueWork(true);
                                 }
                             }).create();
+        }
+
+        @Override
+        public void onStart() {
+            super.onStart();
+            Log.i(TAG, "Entered onStart");
+
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            Log.i(TAG, "Entered onResume");
         }
     }
 

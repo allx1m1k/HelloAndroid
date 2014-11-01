@@ -17,6 +17,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 public class WebViewActivity extends Activity {
+    final static String MY_URL = "http://www.moma.org";
 
     WebView mWebView;
 
@@ -30,11 +31,9 @@ public class WebViewActivity extends Activity {
 
         // Set a kind of listener on the WebView so the WebView can intercept
         // URL loading requests if it wants to
-
         mWebView.setWebViewClient(new HelloWebViewClient());
-
         mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.loadUrl("http://www.moma.org");
+        mWebView.loadUrl(MY_URL);
     }
 
     @Override
@@ -49,14 +48,14 @@ public class WebViewActivity extends Activity {
     private class HelloWebViewClient extends WebViewClient {
         private static final String TAG = "HelloWebViewClient";;
 
-        // Give application a chance to catch additional URL loading requests
+        //Give application a chance to catch additional URL loading requests
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             Log.i(TAG, "About to load:" + url);
             view.loadUrl(url);
             return true;
         }
-
+        //Give application a chance to came back to hosting Activity
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);

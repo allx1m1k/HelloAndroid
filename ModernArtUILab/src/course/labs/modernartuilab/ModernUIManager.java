@@ -14,7 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 public class ModernUIManager extends Activity {
 
@@ -36,9 +36,7 @@ public class ModernUIManager extends Activity {
         Log.i(TAG, "Entered onCreate");
         setContentView(R.layout.main_s);
 
-        /*
-        SeekBar sb = (SeekBar) findViewById(R.id.seek_bar);
-        */
+        //Evaluate all UI elements
         mPinkView = (TextView) findViewById(R.id.pinkView);
         mBlueView = (TextView) findViewById(R.id.blueView);
         mGreenView = (TextView) findViewById(R.id.greenView);
@@ -52,8 +50,7 @@ public class ModernUIManager extends Activity {
             //Implementation for methods OnSeekBarChangeListener interface for reacting on changes mSeekBar
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //Log.i(TAG, "Entered changeColor");
-                //changeViewColor(progress);
+                //setting up color background
                 int seek = seekBar.getProgress();
                 mPinkView.setBackgroundColor(changeColor(0xFF007F, 0xFF6633, seek));
                 mBlueView.setBackgroundColor(changeColor(0x0000FF, 0x6600CC, seek));
@@ -74,16 +71,16 @@ public class ModernUIManager extends Activity {
 
     }
 
-    //Method for changing colors
+    //Method for changing views background colors
     public int changeColor(int color1, int color2, int progress) {
+        //delta evaluating
         int deltaRed = Color.red(color2) - Color.red(color1);
         int deltaGreen = Color.green(color2) - Color.green(color1);
         int deltaBlue = Color.blue(color2) - Color.blue(color1);
-
+        //final color evaluating
         int red = Color.red(color1) + (deltaRed * progress / 100);
         int green = Color.green(color1) + (deltaGreen * progress / 100);
         int blue = Color.blue(color1) + (deltaBlue * progress / 100);
-
         return Color.rgb(red, green, blue);
     }
 
@@ -102,10 +99,6 @@ public class ModernUIManager extends Activity {
         Log.i(TAG, "Entered onOptionsItemSelected");
         switch (item.getItemId()) {
             case R.id.moreInfo:
-                /*
-                Toast.makeText(getApplicationContext(), "User have asked for more info. Dialog have to appear!",
-                        Toast.LENGTH_SHORT).show();
-                 */
                 showDialogFragment(ALERTTAG);
                 return true;
             default:
@@ -128,12 +121,10 @@ public class ModernUIManager extends Activity {
                 break;
         }
     }
-
-    // Abort or complete ShutDown based on value of shouldContinue
+    // Evaluate should it be proceed with WebActivityView or ModerUIManager based on value of shouldContinue
     private void continueWork(boolean shouldContinue) {
         Log.i(TAG, "Entered continueWork");
    if (shouldContinue) {
-
        //Create a new intent to launch the WebViewActivity class
        Intent explicitIntent = new Intent(this, WebViewActivity.class);
        //Start an Activity using that intent
@@ -149,7 +140,7 @@ public class ModernUIManager extends Activity {
 
     // Class that creates the AskDialog
     public static class AskDialogFragment extends DialogFragment {
-
+        //static method
         public static AskDialogFragment newInstance() {
             Log.i(TAG, "New AskDialogFragment created");
             return new AskDialogFragment();
@@ -162,10 +153,15 @@ public class ModernUIManager extends Activity {
             setRetainInstance(true);
             //Create Dialog
             return new AlertDialog.Builder(getActivity())
-                    .setMessage(new StringBuilder("Inspired by the works of artists " + "\r\n" +
-                                    "such as Piet Mondrian and Ben Nicholson." + "\r\n" + "Click below to learn more!")
+                    .setMessage(
+                            new StringBuilder("\r\n")
+                            .append("Inspired by the works")
+                            .append("\r\n")
+                            .append("of artist Daniel Buren")
+                            .append("\r\n")
+                            .append("\r\n")
+                            .append("Click below to learn more!")
                     )
-
                             // User cannot dismiss dialog by hitting back button
                     .setCancelable(false)
 

@@ -15,7 +15,9 @@ import android.view.MenuItem;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-
+/**
+ * Created by Peltik Dmytro
+ */
 public class ModernUIManager extends Activity {
 
     static private final String TAG = "Lab-ModernUILab";

@@ -48,6 +48,8 @@ public class MainActivity extends Activity implements SelectionListener {
 	private FeedFragment mFeedFragment;
 	private String[] mRawFeeds = new String[3];
 	private String[] mProcessedFeeds = new String[3];
+    //add reference variable to intent-filter
+    private final IntentFilter mIntentFilter = new IntentFilter(DATA_REFRESHED_ACTION);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -90,15 +92,14 @@ public class MainActivity extends Activity implements SelectionListener {
 			// the app is "Downloading Tweets from Network"
 			Log.i (TAG,"Issuing Toast Message");
 
+            Toast.makeText(getApplicationContext(), "Downloading Tweets from Network", Toast.LENGTH_SHORT).show();
 
-			
-			
 
-			new DownloaderTask(this).execute(URL_TSWIFT, URL_RBLACK, URL_LGAGA);
+            new DownloaderTask(this).execute(URL_TSWIFT, URL_RBLACK, URL_LGAGA);
 
 			
 			// Set up a BroadcastReceiver to receive an Intent when download
-			// finishes. 
+			// finishes.
 			mRefreshReceiver = new BroadcastReceiver() {
 				@Override
 				public void onReceive(Context context, Intent intent) {
@@ -110,7 +111,6 @@ public class MainActivity extends Activity implements SelectionListener {
 					// Let sender know that the Intent was received
 					// by setting result code to MainActivity.IS_ALIVE
 
-					
 
 
 					
@@ -187,7 +187,7 @@ public class MainActivity extends Activity implements SelectionListener {
 		// Register the BroadcastReceiver to receive a 
 		// DATA_REFRESHED_ACTION broadcast
 
-		
+        registerReceiver(mRefreshReceiver, mIntentFilter);
 		
 		
 	}

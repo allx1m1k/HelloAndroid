@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+//import android.support.v4.content.LocalBroadcastManager;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,6 +21,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+
 
 public class MainActivity extends Activity implements SelectionListener {
 
@@ -50,12 +52,13 @@ public class MainActivity extends Activity implements SelectionListener {
 	private String[] mProcessedFeeds = new String[3];
     //add reference variable to intent-filter
     private final IntentFilter mIntentFilter = new IntentFilter(DATA_REFRESHED_ACTION);
+    //private LocalBroadcastManager mBroadcastMgr;
 
-	@Override
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+        registerReceiver(mRefreshReceiver, mIntentFilter);
 
 		mFragmentManager = getFragmentManager();
 		addFriendsFragment();
@@ -114,10 +117,11 @@ public class MainActivity extends Activity implements SelectionListener {
 					// Let sender know that the Intent was received
 					// by setting result code to MainActivity.IS_ALIVE
 
-
+                    if (isOrderedBroadcast()){
+                        Log.i(TAG, "Process the ordered broadcast");
+                        setResult(MainActivity.IS_ALIVE, null, null);
+                    }
                     //this.setResultCode(IS_ALIVE);
-
-					
 				}
 			};
 
@@ -191,6 +195,11 @@ public class MainActivity extends Activity implements SelectionListener {
 		// Register the BroadcastReceiver to receive a 
 		// DATA_REFRESHED_ACTION broadcast
 
+         /*mBroadcastMgr = LocalBroadcastManager
+                .getInstance(getApplicationContext());
+
+        mBroadcastMgr.
+        */
         registerReceiver(mRefreshReceiver, mIntentFilter);
 		
 		

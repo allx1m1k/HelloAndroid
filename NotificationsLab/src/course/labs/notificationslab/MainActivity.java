@@ -95,9 +95,9 @@ public class MainActivity extends Activity implements SelectionListener {
 			// the app is "Downloading Tweets from Network"
 			Log.i (TAG,"Issuing Toast Message");
 
-            Toast.makeText(getApplicationContext(), "Downloading Tweets from Network", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Downloading Tweets from Network", Toast.LENGTH_LONG).show();
 
-
+            //Starts back ground task (AsyncTask) to download the tweets
             new DownloaderTask(this).execute(URL_TSWIFT, URL_RBLACK, URL_LGAGA);
 
 			
@@ -115,7 +115,7 @@ public class MainActivity extends Activity implements SelectionListener {
 					// by setting result code to MainActivity.IS_ALIVE
 
 
-                    this.setResultCode(IS_ALIVE);
+                    //this.setResultCode(IS_ALIVE);
 
 					
 				}
@@ -203,13 +203,11 @@ public class MainActivity extends Activity implements SelectionListener {
 		// Unregister the BroadcastReceiver if it has been registered
         // Note: To work around a Robotium issue - check that the BroadcastReceiver
         // is not null before you try to unregister it
-        
 
-		
-		
-		
 		super.onPause();
-
+        if (mRefreshReceiver != null) {
+            unregisterReceiver(mRefreshReceiver);
+        }
 	}
 
 	// Convert raw Tweet data (in JSON format) into text for display

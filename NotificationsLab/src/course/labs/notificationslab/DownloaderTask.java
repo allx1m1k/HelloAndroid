@@ -154,20 +154,25 @@ public class DownloaderTask extends AsyncTask<String, Void, String[]> {
 					@Override
 					public void onReceive(Context context, Intent intent) {
 
-						Log.i(TAG,
-								"Entered result receiver's onReceive() method");
+						Log.i(TAG, "Entered result receiver's onReceive() method");
 
 						// TODO: Check whether the result code is not MainActivity.IS_ALIVE
 
-						if (false || true) {
+						if (getResultCode() == MainActivity.IS_ALIVE) {
 
 							// TODO: If so, create a PendingIntent using the
 							// restartMainActivityIntent and set its flags
 							// to FLAG_UPDATE_CURRENT
 
+                            //1 - the intent that refers to MainActivity.class
+                            final Intent restartMainActivtyIntent = new Intent(mApplicationContext, MainActivity.class);
 
-
-
+                            //2 - pending intent that holds previous intent
+                            /*PendingIntent pendingIntent = PendingIntent.getBroadcast(mApplicationContext, 0,
+                                    restartMainActivtyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                            */
+                            PendingIntent pendingIntent = PendingIntent.getActivity(mApplicationContext, 0,
+                                    restartMainActivtyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 
 							// Uses R.layout.custom_notification for the
@@ -182,9 +187,7 @@ public class DownloaderTask extends AsyncTask<String, Void, String[]> {
 							// reflect whether the download completed
 							// successfully
 
-
-
-							
+                            mContentView.setTextViewText(R.id.text, successMsg);
 
 							// TODO: Use the Notification.Builder class to
 							// create the Notification. You will have to set
@@ -192,17 +195,16 @@ public class DownloaderTask extends AsyncTask<String, Void, String[]> {
 							// android.R.drawable.stat_sys_warning
 							// for the small icon. You should also
 							// setAutoCancel(true).
-
                             Notification.Builder notificationBuilder = new Notification.Builder(mApplicationContext)
                                     .setTicker("Tweeter Data Refresh")
                                     .setSmallIcon(android.R.drawable.stat_sys_warning)
+                                    .setContent(mContentView)
                                     .setAutoCancel(true)
-                                    .setContentIntent(mContentIntent)
-                                    .setVibrate(mVibratePattern)
-                                    .setContent(mContentView);
+                                    .setContentIntent(pendingIntent)
+                                    .setVibrate(mVibratePattern);
+
 
                             // TODO: Send the notification
-
                             NotificationManager mNotificationManager = (NotificationManager) mApplicationContext.getSystemService(Context.NOTIFICATION_SERVICE);
                             mNotificationManager.notify(MY_NOTIFICATION_ID, notificationBuilder.build());
 

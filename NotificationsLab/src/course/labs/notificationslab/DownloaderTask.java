@@ -27,6 +27,10 @@ public class DownloaderTask extends AsyncTask<String, Void, String[]> {
 	private String mFeeds[] = new String[3];
 	private MainActivity mParentActivity;
 	private Context mApplicationContext;
+    // Notification Action Elements
+    //private Intent mNotificationIntent;
+    private PendingIntent mContentIntent;
+    private long[] mVibratePattern = {200, 200, 300};
 
 	// Raw feed file IDs used in this offline version of the app
 	public static final int txtFeeds[] = { R.raw.tswift, R.raw.rblack,
@@ -146,6 +150,7 @@ public class DownloaderTask extends AsyncTask<String, Void, String[]> {
 					final String failMsg = "Download has failed. Please retry Later.";
 					final String successMsg = "Download completed successfully.";
 
+
 					@Override
 					public void onReceive(Context context, Intent intent) {
 
@@ -162,8 +167,8 @@ public class DownloaderTask extends AsyncTask<String, Void, String[]> {
 
 
 
-							
-							
+
+
 
 							// Uses R.layout.custom_notification for the
 							// layout of the notification View. The xml
@@ -188,17 +193,19 @@ public class DownloaderTask extends AsyncTask<String, Void, String[]> {
 							// for the small icon. You should also
 							// setAutoCancel(true).
 
+                            Notification.Builder notificationBuilder = new Notification.Builder(mApplicationContext)
+                                    .setTicker("Tweeter Data Refresh")
+                                    .setSmallIcon(android.R.drawable.stat_sys_warning)
+                                    .setAutoCancel(true)
+                                    .setContentIntent(mContentIntent)
+                                    .setVibrate(mVibratePattern)
+                                    .setContent(mContentView);
 
+                            // TODO: Send the notification
 
-							
-							
-							
-							
-							// TODO: Send the notification
+                            NotificationManager mNotificationManager = (NotificationManager) mApplicationContext.getSystemService(Context.NOTIFICATION_SERVICE);
+                            mNotificationManager.notify(MY_NOTIFICATION_ID, notificationBuilder.build());
 
-
-							
-							
 
 							Log.i(TAG, "Notification Area Notification sent");
 						}

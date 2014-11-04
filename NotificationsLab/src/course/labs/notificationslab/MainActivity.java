@@ -56,6 +56,7 @@ public class MainActivity extends Activity implements SelectionListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+
 		mFragmentManager = getFragmentManager();
 		addFriendsFragment();
 
@@ -84,6 +85,8 @@ public class MainActivity extends Activity implements SelectionListener {
 	private void ensureData() {
 
 		Log.i(TAG,"In ensureData(), mIsFresh:" + mIsFresh);
+        //add debug info
+        //getIntent().setFlags(Intent.FLAG_DEBUG_LOG_RESOLUTION);
 
 		if (!mIsFresh) {
 
@@ -112,6 +115,7 @@ public class MainActivity extends Activity implements SelectionListener {
 					// by setting result code to MainActivity.IS_ALIVE
 
 
+                    this.setResultCode(IS_ALIVE);
 
 					
 				}

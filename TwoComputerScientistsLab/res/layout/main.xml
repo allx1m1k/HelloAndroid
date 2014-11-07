@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Steve Jobs"
+        android:textAlignment="gravity"
+        android:id="@+id/firstScientistName"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:editable="false"
+        android:focusableInTouchMode="false"
+        android:textSize="24sp"
+        android:paddingTop="8dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/firstScientistImageView"
+        android:layout_below="@+id/firstScientistName"
+        android:src="@drawable/stevejobs"
+        android:contentDescription="@string/firstDescr"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-28dp" />
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/firstScientistScroll"
+    android:layout_below="@+id/firstScientistImageView"
+    android:layout_marginTop="-28dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Steven Paul Jobs was an American entrepreneur, marketer, and inventor, who was the co-founder, chairman, and CEO of Apple Inc.\n Jobs received a number of honors and public recognition for his influence in the technology and music industries. He has been referred to as legendary, a futurist and a visionary,and has been described as the Father of the Digital Revolution, a master of innovation, the master evangelist of the digital age and a design perfectionist."
+        android:singleLine="false"
+        android:textSize="22sp"
+        android:layout_marginTop="-38dp"
+        android:id="@+id/firstScientistText"
+        android:textAlignment="gravity"
+        android:phoneNumber="false"
+        android:visibility="visible"
+        android:gravity="center"
+        android:paddingTop="32dp" />
+</ScrollView>
+</RelativeLayout>
+
+

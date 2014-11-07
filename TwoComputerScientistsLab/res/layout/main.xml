@@ -19,19 +19,19 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="230dp"
         android:id="@+id/firstScientistImageView"
         android:layout_below="@+id/firstScientistName"
         android:src="@drawable/stevejobs"
         android:contentDescription="@string/firstDescr"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-28dp" />
+        android:layout_marginTop="8dp" />
 <ScrollView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/firstScientistScroll"
     android:layout_below="@+id/firstScientistImageView"
-    android:layout_marginTop="-28dp">
+    android:layout_marginTop="8dp">
 
     <TextView
         android:layout_width="match_parent"

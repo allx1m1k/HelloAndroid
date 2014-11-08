@@ -15,5 +15,7 @@ public class TwoComputerScientists extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         Log.i(TAG, "entered onCreate");
+
     }
+
 }

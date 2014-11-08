@@ -37,10 +37,9 @@
         android:layout_height="match_parent"
         android:id="@+id/secondScientistScroll"
         android:layout_below="@+id/secondScientistName"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="-8dp"
         android:layout_toRightOf="@+id/secondScientistImageView"
-        android:layout_alignParentTop="false"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentTop="false">
 
     <TextView
         android:layout_width="wrap_content"
@@ -48,15 +47,9 @@
         android:text="Sergey Brin is an American computer scientist and internet entrepreneur who, together with Larry Page, co-founded Google, one of the most profitable Internet companies. As of October 2014, his personal wealth was estimated to be US$29.9 billion.\n
         Together, Brin and Page each own about 16 percent of the company."
         android:id="@+id/secondScientistText"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
         android:layout_marginTop="8dp"
         android:textSize="22sp"
-        android:layout_toRightOf="@+id/secondScientistImageView"
-        android:layout_alignParentTop="false"
         android:layout_marginLeft="12dp"
-        android:layout_below="@+id/secondScientistName"
-        android:gravity="center_horizontal"
-        android:textAlignment="gravity" />
+        android:gravity="center" />
     </ScrollView>
 </RelativeLayout>

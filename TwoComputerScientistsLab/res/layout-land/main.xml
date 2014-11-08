@@ -15,13 +15,11 @@
         android:textSize="24sp" />
 
     <ImageView
-        android:layout_width="280dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:id="@+id/secondScientistImageView"
-        android:layout_below="@+id/secondScientistName"
         android:layout_alignParentStart="false"
         android:focusableInTouchMode="false"
-        android:layout_alignParentTop="true"
         android:layout_alignParentBottom="false"
         android:layout_alignParentLeft="false"
         android:src="@drawable/sergeybrin"
@@ -29,17 +27,7 @@
         android:clickable="false"
         android:layout_alignParentEnd="false"
         android:layout_alignParentRight="false"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="18dp" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/secondScientistScroll"
-        android:layout_below="@+id/secondScientistName"
-        android:layout_marginTop="-8dp"
-        android:layout_toRightOf="@+id/secondScientistImageView"
-        android:layout_alignParentTop="false">
+        android:layout_marginLeft="8dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,9 +35,9 @@
         android:text="Sergey Brin is an American computer scientist and internet entrepreneur who, together with Larry Page, co-founded Google, one of the most profitable Internet companies. As of October 2014, his personal wealth was estimated to be US$29.9 billion.\n
         Together, Brin and Page each own about 16 percent of the company."
         android:id="@+id/secondScientistText"
-        android:layout_marginTop="8dp"
         android:textSize="22sp"
         android:layout_marginLeft="12dp"
-        android:gravity="center" />
-    </ScrollView>
+        android:gravity="center"
+        android:layout_toRightOf="@+id/secondScientistImageView"
+        android:layout_below="@+id/secondScientistName" />
 </RelativeLayout>

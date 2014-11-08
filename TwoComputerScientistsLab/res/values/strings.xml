@@ -2,5 +2,6 @@
 <resources>
     <string name="app_name">TwoComputerScientistsLab</string>
     <string name="firstDescr">Steve Jobs is one of the greatest Computer Scientists</string>
+    <string name="secondDescr">Sergey Brin is Google co-founder</string>
 
 </resources>

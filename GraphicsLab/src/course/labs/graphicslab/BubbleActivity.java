@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 public class BubbleActivity extends Activity {
@@ -135,7 +136,6 @@ public class BubbleActivity extends Activity {
 
 			// If a fling gesture starts on a BubbleView then change the
 			// BubbleView's velocity
-
 			@Override
 			public boolean onFling(MotionEvent event1, MotionEvent event2,
 					float velocityX, float velocityY) {
@@ -143,13 +143,15 @@ public class BubbleActivity extends Activity {
 				// TODO - Implement onFling actions.
 				// You can get all Views in mFrame one at a time
 				// using the ViewGroup.getChildAt() method
-
-
-				
-				
-				
-				
-				
+                Log.i(TAG, "Entered onFling " + "Child Views are " + mFrame.getChildCount());
+                if (velocityX < -10.0f) {
+                    Log.i(TAG, "Entered onFling velocityX < 10");
+                    /*
+                    mCurrentLayoutState = mCurrentLayoutState == 0 ? 1
+                            : 0;
+                    switchLayoutStateTo(mCurrentLayoutState);
+                    */
+                }
 				return true;
 			}
 
@@ -167,11 +169,10 @@ public class BubbleActivity extends Activity {
 
                 Log.i(TAG, "Enterd onSingleTapConfirmed " + mFrame.getChildCount());
 
-				
-				
-				
-				
-				
+                ImageView bubbleView = new ImageView(getApplicationContext());
+                bubbleView.setImageDrawable(getResources().getDrawable(R.drawable.b128));
+
+                mFrame.addView(bubbleView);
 				
 				
 				return true;
@@ -391,26 +392,24 @@ public class BubbleActivity extends Activity {
 
 
 			// TODO - save the canvas
-
-
+            canvas.save();
 			
 			// TODO - increase the rotation of the original image by mDRotate
-
+            mRotate += mDRotate;
 
 			
 			// TODO Rotate the canvas by current rotation
 			// Hint - Rotate around the bubble's center, not its position
-
+            canvas.rotate(mRotate, (mXPos + mRadius), (mYPos + mRadius));
 
 
 			
 			// TODO - draw the bitmap at it's new location
-            canvas.drawBitmap(mBitmap, mDx, mDy, mPainter);
+            canvas.drawBitmap(mScaledBitmap, mXPos, mYPos, mPainter);
 
 			
 			// TODO - restore the canvas
-
-
+            canvas.restore();
 			
 		}
 
@@ -419,8 +418,6 @@ public class BubbleActivity extends Activity {
 		private synchronized boolean moveWhileOnScreen() {
 
 			// TODO - Move the BubbleView
-
-
 
 			
 			

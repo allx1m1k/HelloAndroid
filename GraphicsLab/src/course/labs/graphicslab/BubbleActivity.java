@@ -165,12 +165,8 @@ public class BubbleActivity extends Activity {
 				// You can get all Views in mFrame using the
 				// ViewGroup.getChildCount() method
 
+                Log.i(TAG, "Enterd onSingleTapConfirmed " + mFrame.getChildCount());
 
-				
-				
-				
-				
-				
 				
 				
 				
@@ -186,15 +182,14 @@ public class BubbleActivity extends Activity {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 
-		// TODO - Delegate the touch to the gestureDetector
-
-		
-
-		
-		
+		// DONE - Delegate the touch to the gestureDetector
+        //see TouchGestureViewFlipperTest about delegate
+        Log.i(TAG, "Entered onTouchEvent and delegate it to mGestureDetector");
+		return mGestureDetector.onTouchEvent(event);
 		
 		
-		return true || false;
+		
+		//return true || false;
 		
 	}
 
@@ -254,8 +249,8 @@ public class BubbleActivity extends Activity {
 		private void setRotation(Random r) {
 			if (speedMode == RANDOM) {
 
-				// TODO - set rotation in range [1..3]
-
+				// DONE - set rotation in range [1..3]
+                setRotation(2f);
 				
 			} else {
 				mDRotate = 0;
@@ -285,14 +280,6 @@ public class BubbleActivity extends Activity {
 				// TODO - Set mDx and mDy to indicate movement direction and speed 
 				// Limit speed in the x and y direction to [-3..3] pixels per movement.
 
-
-				
-				
-				
-				
-				
-				
-				
 			}
 		}
 
@@ -326,6 +313,7 @@ public class BubbleActivity extends Activity {
 			mMoverFuture = executor.scheduleWithFixedDelay(new Runnable() {
 				@Override
 				public void run() {
+                    Canvas canvas;
 
 					// TODO - implement movement logic.
 					// Each time this method is run the BubbleView should
@@ -333,8 +321,10 @@ public class BubbleActivity extends Activity {
 					// stop the BubbleView's Worker Thread.
 					// Otherwise, request that the BubbleView be redrawn.
 
+                    //canvas =
 
-					
+
+					//mScaledBitmap.drawBitmap();
 					
 					
 					
@@ -399,6 +389,7 @@ public class BubbleActivity extends Activity {
 		@Override
 		protected synchronized void onDraw(Canvas canvas) {
 
+
 			// TODO - save the canvas
 
 
@@ -414,7 +405,7 @@ public class BubbleActivity extends Activity {
 
 			
 			// TODO - draw the bitmap at it's new location
-
+            canvas.drawBitmap(mBitmap, mDx, mDy, mPainter);
 
 			
 			// TODO - restore the canvas

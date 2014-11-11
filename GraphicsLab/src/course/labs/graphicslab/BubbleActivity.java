@@ -84,22 +84,36 @@ public class BubbleActivity extends Activity {
 				.getStreamVolume(AudioManager.STREAM_MUSIC)
 				/ mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 
-		// TODO - make a new SoundPool, allowing up to 10 streams
-		mSoundPool = null;
+		// DONE - make a new SoundPool, allowing up to 10 streams
+		//see AudioVideoAudioManager
+        mSoundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
 
-		// TODO - set a SoundPool OnLoadCompletedListener that calls
-		// setupGestureDetector()
-		
-		
-		
-		
-		
-		// TODO - load the sound from res/raw/bubble_pop.wav
-		
-		
-		
+		// DONE - set a SoundPool OnLoadCompletedListener that calls setupGestureDetector()
+        mSoundPool.setOnLoadCompleteListener(new OnLoadCompleteListener() {
 
-	}
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId,
+                                       int status) {
+
+                // If sound loading was successful enable the play Button
+                if (0 == status) {
+                    Log.i(TAG, "OnLoadCompleteListener created");
+                    setupGestureDetector();
+                    //playButton.setEnabled(true);
+                } else {
+                    Log.i(TAG, "Unable to load sound");
+                    finish();
+                }
+            }
+        });
+		
+		
+		// DONE - load the sound from res/raw/bubble_pop.wav
+        //mSoundId = mSoundPool.load(this, R.raw.slow_whoop_bubble_pop, 1);
+        //see AudioVideoAudioManager
+        mSoundID = mSoundPool.load(this, R.raw.bubble_pop, 1);
+
+    }
 
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
@@ -115,7 +129,7 @@ public class BubbleActivity extends Activity {
 
 	// Set up GestureDetector
 	private void setupGestureDetector() {
-
+        Log.i(TAG, "Entered setupGestureDetector");
 		mGestureDetector = new GestureDetector(this,
 		new GestureDetector.SimpleOnGestureListener() {
 
@@ -187,13 +201,8 @@ public class BubbleActivity extends Activity {
 	@Override
 	protected void onPause() {
 
-		// TODO - Release all SoundPool resources
-
-
-
-		
-		
-		
+		// DONE - Release all SoundPool resources
+        mSoundPool.release();
 		super.onPause();
 	}
 

@@ -168,13 +168,34 @@ public class BubbleActivity extends Activity {
 				// ViewGroup.getChildCount() method
 
                 Log.i(TAG, "Enterd onSingleTapConfirmed " + mFrame.getChildCount());
-
+/*
                 ImageView bubbleView = new ImageView(getApplicationContext());
                 bubbleView.setImageDrawable(getResources().getDrawable(R.drawable.b128));
 
                 mFrame.addView(bubbleView);
-				
-				
+*/
+                /*
+                BubbleView mNewChildBubbleView = new BubbleView(mFrame.getContext(), event.getX(), event.getY());
+
+                mFrame.addView(mNewChildBubbleView);
+                mNewChildBubbleView.startMovement();
+				*/
+
+                for (int i = 0; i < mFrame.getChildCount(); i++){
+                    BubbleView child = (BubbleView) mFrame.getChildAt(i);
+                    if(child.intersects(event.getRawX(), event.getRawY())){
+                        child.stopMovement(true);
+                        return true;
+                    }
+                }
+
+                BubbleView mNewChildBubbleView = new BubbleView(getApplicationContext(), event.getRawX(), event.getRawY());
+
+                mFrame.addView(mNewChildBubbleView);
+                //post new bubble
+                //mNewChildBubbleView.postInvalidate();
+                mNewChildBubbleView.startMovement();
+
 				return true;
 			}
 		});
@@ -291,19 +312,22 @@ public class BubbleActivity extends Activity {
 			} else {
 
 				// TODO - set scaled bitmap size in range [1..3] * BITMAP_SIZE
-
-
+                mScaledBitmapWidth = mBitmap.getWidth() * 1;
+               // mScaledBitmapWidth = BITMAP_SIZE *2;
+                //mScaledBitmapWidth = BITMAP_SIZE *2;
+                     //mBitmap.getWidth();
 				
 			}
 
 			// TODO - create the scaled bitmap using size set above
+            mScaledBitmap = BitmapFactory.decodeResource(getResources(),  R.drawable.b128);
 
 
 		}
 
 		// Start moving the BubbleView & updating the display
 		private void startMovement() {
-
+            Log.i(TAG, "Entered startMovement");
 			// Creates a WorkerThread
 			ScheduledExecutorService executor = Executors
 					.newScheduledThreadPool(1);
@@ -314,7 +338,7 @@ public class BubbleActivity extends Activity {
 			mMoverFuture = executor.scheduleWithFixedDelay(new Runnable() {
 				@Override
 				public void run() {
-                    Canvas canvas;
+
 
 					// TODO - implement movement logic.
 					// Each time this method is run the BubbleView should
@@ -325,9 +349,9 @@ public class BubbleActivity extends Activity {
                     //canvas =
 
 
-					//mScaledBitmap.drawBitmap();
-					
-					
+					//https://class.coursera.org/android-002/forum/thread?thread_id=2388
+				    moveWhileOnScreen();
+                    postInvalidate();
 					
 				}
 			}, 0, REFRESH_RATE, TimeUnit.MILLISECONDS);
@@ -371,9 +395,7 @@ public class BubbleActivity extends Activity {
 						// play the popping sound
 						if (wasPopped) {
 
-
-
-							
+                            mSoundPool.play(mSoundID, mStreamVolume, mStreamVolume, 1, 0, 1f);
 						}
 					}
 				});
@@ -407,7 +429,6 @@ public class BubbleActivity extends Activity {
 			// TODO - draw the bitmap at it's new location
             canvas.drawBitmap(mScaledBitmap, mXPos, mYPos, mPainter);
 
-			
 			// TODO - restore the canvas
             canvas.restore();
 			
@@ -418,8 +439,13 @@ public class BubbleActivity extends Activity {
 		private synchronized boolean moveWhileOnScreen() {
 
 			// TODO - Move the BubbleView
+            //https://class.coursera.org/android-002/forum/thread?thread_id=2498
+            //https://class.coursera.org/android-002/forum/thread?thread_id=2152
+            Log.i(TAG,"moving bubble from "+mXPos+","+mYPos+" to "+(mXPos + mDx)+","+(mYPos + mDy)+"(change "+mDx+","+mDy+")");
+            mXPos = mXPos + mDx;
+            mYPos = mYPos + mDy;
+            ++mDx;
 
-			
 			
 			return isOutOfView();
 
@@ -432,7 +458,7 @@ public class BubbleActivity extends Activity {
 			// TODO - Return true if the BubbleView is still on the screen after
 			// the move operation
 
-			
+            //return true;
 			return true || false;
 
 		}

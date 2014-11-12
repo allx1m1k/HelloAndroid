@@ -269,14 +269,19 @@ public class BubbleActivity extends Activity {
 		}
 
 		private void setRotation(Random r) {
-			if (speedMode == RANDOM) {
+            int min = 1;
+            int max = 3;
+            if (speedMode == RANDOM) {
 
 				// DONE - set rotation in range [1..3]
-                setRotation(2f);
+                //setRotation(2f);
+                mDRotate = ((r.nextInt(max - min + 1) + min));
 				
 			} else {
 				mDRotate = 0;
 			}
+
+            setRotation(mDRotate);
 		}
 
 		private void setSpeedAndDirection(Random r) {
@@ -312,7 +317,12 @@ public class BubbleActivity extends Activity {
 			} else {
 
 				// TODO - set scaled bitmap size in range [1..3] * BITMAP_SIZE
-                mScaledBitmapWidth = mBitmap.getWidth() * 1;
+                //https://class.coursera.org/android-002/forum/thread?thread_id=2491
+                int min = 1;
+                int max = 3;
+                mScaledBitmapWidth = (r.nextInt(max - min + 1) + min) * BITMAP_SIZE;
+
+                //mScaledBitmapWidth = mBitmap.getWidth() * 1;
                // mScaledBitmapWidth = BITMAP_SIZE *2;
                 //mScaledBitmapWidth = BITMAP_SIZE *2;
                      //mBitmap.getWidth();
@@ -320,7 +330,8 @@ public class BubbleActivity extends Activity {
 			}
 
 			// TODO - create the scaled bitmap using size set above
-            mScaledBitmap = BitmapFactory.decodeResource(getResources(),  R.drawable.b128);
+            mScaledBitmap = Bitmap.createScaledBitmap(mBitmap, mScaledBitmapWidth, mScaledBitmapWidth, false);
+            //mScaledBitmap = BitmapFactory.decodeResource(getResources(),  R.drawable.b128);
 
 
 		}
@@ -350,8 +361,16 @@ public class BubbleActivity extends Activity {
 
 
 					//https://class.coursera.org/android-002/forum/thread?thread_id=2388
-				    moveWhileOnScreen();
-                    postInvalidate();
+				    //moveWhileOnScreen();
+                    //postInvalidate();
+
+
+                    if (moveWhileOnScreen ()) {
+                        stopMovement(false);
+                        //BubbleView.this.postInvalidate();
+                    }
+                        //else postInvalidate();
+                        else BubbleView.this.postInvalidate();
 					
 				}
 			}, 0, REFRESH_RATE, TimeUnit.MILLISECONDS);
@@ -442,12 +461,16 @@ public class BubbleActivity extends Activity {
             //https://class.coursera.org/android-002/forum/thread?thread_id=2498
             //https://class.coursera.org/android-002/forum/thread?thread_id=2152
             Log.i(TAG,"moving bubble from "+mXPos+","+mYPos+" to "+(mXPos + mDx)+","+(mYPos + mDy)+"(change "+mDx+","+mDy+")");
+            /*
             mXPos = mXPos + mDx;
             mYPos = mYPos + mDy;
             ++mDx;
+            */
+            //https://class.coursera.org/android-002/forum/thread?thread_id=2491
+            mXPos += mDx;
+            mYPos += mDy;
+            return isOutOfView();
 
-			
-			return isOutOfView();
 
 		}
 
@@ -459,7 +482,15 @@ public class BubbleActivity extends Activity {
 			// the move operation
 
             //return true;
-			return true || false;
+			//return true || false;
+            //https://class.coursera.org/android-002/forum/thread?thread_id=2491
+
+            if(mYPos < 0 || mXPos < 0 ||
+                    mYPos > mDisplayHeight ||
+                    mXPos > mDisplayWidth){
+                return true;
+            }
+            return false;
 
 		}
 	}

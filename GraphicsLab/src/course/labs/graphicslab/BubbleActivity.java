@@ -180,6 +180,20 @@ public class BubbleActivity extends Activity {
                 mFrame.addView(mNewChildBubbleView);
                 mNewChildBubbleView.startMovement();
 				*/
+                /*
+                Follow the
+                for each BubbleView on screen
+                get the child BubbleView
+                verify if intersects with the event coordinate. ( pay attention, do not use getX, getY but getRawX,getRawY ( the last are absolute coordinates relative to the device screen).
+                if intersects stopMovement with true to pop sound, than exit to the method with true
+                outside the for loop
+                create e new BubbleView add to the mFrame and startMovement and return also true
+                 */
+                BubbleView mNewChildBubbleView = new BubbleView(getApplicationContext(), event.getRawX(), event.getRawY());
+                mFrame.addView(mNewChildBubbleView);
+                //post new bubble
+                //mNewChildBubbleView.postInvalidate();
+                mNewChildBubbleView.startMovement();
 
                 for (int i = 0; i < mFrame.getChildCount(); i++){
                     BubbleView child = (BubbleView) mFrame.getChildAt(i);
@@ -189,12 +203,7 @@ public class BubbleActivity extends Activity {
                     }
                 }
 
-                BubbleView mNewChildBubbleView = new BubbleView(getApplicationContext(), event.getRawX(), event.getRawY());
 
-                mFrame.addView(mNewChildBubbleView);
-                //post new bubble
-                //mNewChildBubbleView.postInvalidate();
-                mNewChildBubbleView.startMovement();
 
 				return true;
 			}
@@ -329,8 +338,8 @@ public class BubbleActivity extends Activity {
 				
 			}
 
-			// TODO - create the scaled bitmap using size set above
-            mScaledBitmap = Bitmap.createScaledBitmap(mBitmap, mScaledBitmapWidth, mScaledBitmapWidth, false);
+			// DONE - create the scaled bitmap using size set above
+            mScaledBitmap = Bitmap.createScaledBitmap(mBitmap, mScaledBitmapWidth, mScaledBitmapWidth, true);
             //mScaledBitmap = BitmapFactory.decodeResource(getResources(),  R.drawable.b128);
 
 

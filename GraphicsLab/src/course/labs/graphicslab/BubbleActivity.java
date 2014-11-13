@@ -205,8 +205,9 @@ public class BubbleActivity extends Activity {
                 mFrame.addView(mNewChildBubbleView);
                 //post new bubble
                 mNewChildBubbleView.startMovement();
+                return false;
+				//return true;
 
-				return true;
 			}
 		});
 	}
@@ -314,9 +315,12 @@ public class BubbleActivity extends Activity {
 
 			default:
 
-				// TODO - Set mDx and mDy to indicate movement direction and speed 
+				// DONE - Set mDx and mDy to indicate movement direction and speed
 				// Limit speed in the x and y direction to [-3..3] pixels per movement.
-
+                //30:00 https://www.youtube.com/watch?v=9ZGZlowSnl4&list=PLokLt3z1Q4pM-dWindxVV6HIhmqJ1NVtD&index=15
+                //https://class.coursera.org/android-002/forum/thread?thread_id=2476
+                mDx = r.nextInt(7)-3;
+                mDy = r.nextInt(7)-3;
 			}
 		}
 

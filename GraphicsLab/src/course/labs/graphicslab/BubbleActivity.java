@@ -140,17 +140,19 @@ public class BubbleActivity extends Activity {
 			public boolean onFling(MotionEvent event1, MotionEvent event2,
 					float velocityX, float velocityY) {
 
-				// TODO - Implement onFling actions.
+				// DONE - Implement onFling actions.
 				// You can get all Views in mFrame one at a time
 				// using the ViewGroup.getChildAt() method
+                //46:16 https://www.youtube.com/watch?v=9ZGZlowSnl4&list=PLokLt3z1Q4pM-dWindxVV6HIhmqJ1NVtD&index=15
                 Log.i(TAG, "Entered onFling " + "Child Views are " + mFrame.getChildCount());
-                if (velocityX < -10.0f) {
-                    Log.i(TAG, "Entered onFling velocityX < 10");
-                    /*
-                    mCurrentLayoutState = mCurrentLayoutState == 0 ? 1
-                            : 0;
-                    switchLayoutStateTo(mCurrentLayoutState);
-                    */
+
+                for (int i = 0; i < mFrame.getChildCount(); i++){
+                    // Get BubbleView
+                    BubbleView child = (BubbleView) mFrame.getChildAt(i);
+                    if(child.intersects(event1.getX(), event1.getY())){
+                        child.deflect(velocityX, velocityY);
+                        return true;
+                    }
                 }
 				return true;
 			}

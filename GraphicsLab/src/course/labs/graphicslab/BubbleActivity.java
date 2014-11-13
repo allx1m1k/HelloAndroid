@@ -479,7 +479,7 @@ public class BubbleActivity extends Activity {
 			// DONE - Move the BubbleView
             //https://class.coursera.org/android-002/forum/thread?thread_id=2498
             //https://class.coursera.org/android-002/forum/thread?thread_id=2152
-            Log.i(TAG,"moving bubble from "+mXPos+","+mYPos+" to "+(mXPos + mDx)+","+(mYPos + mDy)+"(change "+mDx+","+mDy+")");
+            //Log.i(TAG,"moving bubble from "+mXPos+","+mYPos+" to "+(mXPos + mDx)+","+(mYPos + mDy)+"(change "+mDx+","+mDy+")");
             /*
             mXPos = mXPos + mDx;
             mYPos = mYPos + mDy;
@@ -502,15 +502,38 @@ public class BubbleActivity extends Activity {
 
             //return true;
 			//return true || false;
-            //https://class.coursera.org/android-002/forum/thread?thread_id=2491
 
+            //45:00 https://www.youtube.com/watch?v=9ZGZlowSnl4&list=PLokLt3z1Q4pM-dWindxVV6HIhmqJ1NVtD&index=15
+
+            if(mXPos < 0 || (mXPos + mScaledBitmapWidth ) > mDisplayWidth
+                    ||
+                    mYPos < 0 || (mYPos + mScaledBitmapWidth) > mDisplayHeight)
+                return true;
+            else {
+                return false;
+            }
+
+
+
+            //https://class.coursera.org/android-002/forum/thread?thread_id=2491
+            /*
+            if(mYPos < 0 || mXPos < 0 ||
+                    mYPos > mDisplayHeight ||
+                    mXPos > mDisplayWidth){
+                return true;
+            }
+            return false;
+            */
+            /* here I added spare calculation so it wasn't work!
             if(mYPos - mScaledBitmapWidth < 0 ||
                     mYPos + mScaledBitmapWidth > mDisplayHeight ||
                     mXPos - mScaledBitmapWidth < 0 ||
                     mXPos + mScaledBitmapWidth > mDisplayWidth){
                 return true;
             }
+
             return false;
+            */
 
             //https://class.coursera.org/android-002/forum/thread?thread_id=2531
             /*

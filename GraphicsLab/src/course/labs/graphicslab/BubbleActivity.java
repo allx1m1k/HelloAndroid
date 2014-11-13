@@ -163,7 +163,7 @@ public class BubbleActivity extends Activity {
 			@Override
 			public boolean onSingleTapConfirmed(MotionEvent event) {
 
-				// TODO - Implement onSingleTapConfirmed actions.
+				// DONE - Implement onSingleTapConfirmed actions.
 				// You can get all Views in mFrame using the
 				// ViewGroup.getChildCount() method
 
@@ -189,13 +189,11 @@ public class BubbleActivity extends Activity {
                 outside the for loop
                 create e new BubbleView add to the mFrame and startMovement and return also true
                  */
-                BubbleView mNewChildBubbleView = new BubbleView(getApplicationContext(), event.getRawX(), event.getRawY());
-                mFrame.addView(mNewChildBubbleView);
-                //post new bubble
-                //mNewChildBubbleView.postInvalidate();
-                mNewChildBubbleView.startMovement();
+
+
 
                 for (int i = 0; i < mFrame.getChildCount(); i++){
+                    // Get BubbleView
                     BubbleView child = (BubbleView) mFrame.getChildAt(i);
                     if(child.intersects(event.getRawX(), event.getRawY())){
                         child.stopMovement(true);
@@ -203,7 +201,10 @@ public class BubbleActivity extends Activity {
                     }
                 }
 
-
+                BubbleView mNewChildBubbleView = new BubbleView(getApplicationContext(), event.getRawX(), event.getRawY());
+                mFrame.addView(mNewChildBubbleView);
+                //post new bubble
+                mNewChildBubbleView.startMovement();
 
 				return true;
 			}
@@ -325,7 +326,7 @@ public class BubbleActivity extends Activity {
 				mScaledBitmapWidth = BITMAP_SIZE * 3;
 			} else {
 
-				// TODO - set scaled bitmap size in range [1..3] * BITMAP_SIZE
+				// DONE - set scaled bitmap size in range [1..3] * BITMAP_SIZE
                 //https://class.coursera.org/android-002/forum/thread?thread_id=2491
                 int min = 1;
                 int max = 3;
@@ -360,7 +361,7 @@ public class BubbleActivity extends Activity {
 				public void run() {
 
 
-					// TODO - implement movement logic.
+					// DONE - implement movement logic.
 					// Each time this method is run the BubbleView should
 					// move one step. If the BubbleView exits the display,
 					// stop the BubbleView's Worker Thread.
@@ -388,13 +389,14 @@ public class BubbleActivity extends Activity {
 		// Returns true if the BubbleView intersects position (x,y)
 		private synchronized boolean intersects(float x, float y) {
 
-			// TODO - Return true if the BubbleView intersects position (x,y)
+			// DONE - Return true if the BubbleView intersects position (x,y)
+            // get the position of the center of the bubble (mRadius is stored half of scaled bitmap width)
+            // get the distance from intersect point to the center of the bubble
+            // intersects if the dist <= radius
+            //https://class.coursera.org/android-002/forum/thread?thread_id=2531
 
-
-
-			
-			
-			return  true || false;
+            return ((x - (mXPos+mRadius) ) * (x - (mXPos+mRadius) ) +
+                    (y - (mYPos+mRadius)) * (y - (mYPos+mRadius))) <= mRadiusSquared;
 
 		}
 
@@ -403,7 +405,7 @@ public class BubbleActivity extends Activity {
 		// Play pop sound if the BubbleView was popped
 
 		private void stopMovement(final boolean wasPopped) {
-
+            Log.i(TAG, "Entered stopMovement");
 			if (null != mMoverFuture) {
 
 				if (!mMoverFuture.isDone()) {
@@ -415,11 +417,15 @@ public class BubbleActivity extends Activity {
 					@Override
 					public void run() {
 
-						// TODO - Remove the BubbleView from mFrame
+						// DONE - Remove the BubbleView from mFrame
+                        //https://class.coursera.org/android-002/forum/thread?thread_id=2240
+                        //https://class.coursera.org/android-002/forum/thread?thread_id=2540
+                        //There is a method, stopMovement, supplied to kill the thread and the BubbleView, but you must complete it.
 
-
+                        mFrame.removeView(BubbleView.this);
+                        mFrame.clearDisappearingChildren();
 						
-						// TODO - If the bubble was popped by user,
+						// DONE - If the bubble was popped by user,
 						// play the popping sound
 						if (wasPopped) {
 
@@ -441,23 +447,23 @@ public class BubbleActivity extends Activity {
 		protected synchronized void onDraw(Canvas canvas) {
 
 
-			// TODO - save the canvas
+			// DONE - save the canvas
             canvas.save();
 			
-			// TODO - increase the rotation of the original image by mDRotate
+			// DONE - increase the rotation of the original image by mDRotate
             mRotate += mDRotate;
 
 			
-			// TODO Rotate the canvas by current rotation
+			// DONE Rotate the canvas by current rotation
 			// Hint - Rotate around the bubble's center, not its position
             canvas.rotate(mRotate, (mXPos + mRadius), (mYPos + mRadius));
 
 
 			
-			// TODO - draw the bitmap at it's new location
+			// DONE - draw the bitmap at it's new location
             canvas.drawBitmap(mScaledBitmap, mXPos, mYPos, mPainter);
 
-			// TODO - restore the canvas
+			// DONE - restore the canvas
             canvas.restore();
 			
 		}
@@ -466,7 +472,7 @@ public class BubbleActivity extends Activity {
 		// operation
 		private synchronized boolean moveWhileOnScreen() {
 
-			// TODO - Move the BubbleView
+			// DONE - Move the BubbleView
             //https://class.coursera.org/android-002/forum/thread?thread_id=2498
             //https://class.coursera.org/android-002/forum/thread?thread_id=2152
             Log.i(TAG,"moving bubble from "+mXPos+","+mYPos+" to "+(mXPos + mDx)+","+(mYPos + mDy)+"(change "+mDx+","+mDy+")");
@@ -487,19 +493,41 @@ public class BubbleActivity extends Activity {
 		// operation
 		private boolean isOutOfView() {
 
-			// TODO - Return true if the BubbleView is still on the screen after
+			// DONE - Return true if the BubbleView is still on the screen after
 			// the move operation
 
             //return true;
 			//return true || false;
             //https://class.coursera.org/android-002/forum/thread?thread_id=2491
 
-            if(mYPos < 0 || mXPos < 0 ||
-                    mYPos > mDisplayHeight ||
-                    mXPos > mDisplayWidth){
+            if(mYPos - mScaledBitmapWidth < 0 ||
+                    mYPos + mScaledBitmapWidth > mDisplayHeight ||
+                    mXPos - mScaledBitmapWidth < 0 ||
+                    mXPos + mScaledBitmapWidth > mDisplayWidth){
                 return true;
             }
             return false;
+
+            //https://class.coursera.org/android-002/forum/thread?thread_id=2531
+            /*
+            if (mXPos <  -mScaledBitmapWidth || mXPos - mScaledBitmapWidth >  mDisplayWidth ||
+                    mYPos <  -mScaledBitmapWidth || mYPos - mScaledBitmapWidth >  mDisplayHeight)
+            {
+                return false ;
+            }
+
+            return true;
+            */
+
+            /*
+            if (mYPos - mScaledBitmapWidth < 0 || mYPos + mScaledBitmapWidth > mDisplayHeight ||
+            mXPos - mScaledBitmapWidth < 0 || mXPos + mScaledBitmapWidth > mDisplayWidth)
+            {
+                return true ;
+            } else {
+                return false;
+            }
+            */
 
 		}
 	}

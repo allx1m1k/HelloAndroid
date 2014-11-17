@@ -15,6 +15,7 @@
       <module fileurl="file://$PROJECT_DIR$/HelloApp/HelloApp.iml" filepath="$PROJECT_DIR$/HelloApp/HelloApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/IntentsLab/IntentsLab.iml" filepath="$PROJECT_DIR$/IntentsLab/IntentsLab.iml" />
       <module fileurl="file://$PROJECT_DIR$/IntentsLabTest/IntentsLabTest.iml" filepath="$PROJECT_DIR$/IntentsLabTest/IntentsLabTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LocationLab/LocationLab.iml" filepath="$PROJECT_DIR$/LocationLab/LocationLab.iml" />
       <module fileurl="file://$PROJECT_DIR$/ModernArtUILab/ModernArtUILab.iml" filepath="$PROJECT_DIR$/ModernArtUILab/ModernArtUILab.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyBrowser/MyBrowser.iml" filepath="$PROJECT_DIR$/MyBrowser/MyBrowser.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyFirstApp/MyFirstApp.iml" filepath="$PROJECT_DIR$/MyFirstApp/MyFirstApp.iml" />

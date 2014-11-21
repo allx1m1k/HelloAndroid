@@ -1,0 +1,33 @@
+<component name="libraryTable">
+  <library name="c6">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/BlackjackGUI.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/SimpleStamper.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/SimplePaint.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/TrackLines.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/SubKiller2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/BlackjackGUI2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/NullLayoutDemo.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/Stats.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/RandomStrings.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/SliderAndComboBoxDemo.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/KeyboardAndFocusDemo.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/SubKiller.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/MosaicDraw.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/SimpleCalc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/ClickableRandomStrings.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/HelloWorldApplet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/TextCounter.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/SimpleTrackMouse.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/RandomArt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/SimpleStamperWithDrag.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/ClickableCheckerboard.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/Dice.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/HighLowGUI.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/DragTwoSquares.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c6/DiceWithButton.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

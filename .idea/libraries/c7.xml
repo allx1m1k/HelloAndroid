@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="c7">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c7/SimplePolygons.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c7/ReverseWithDynamicArray.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c7/SimpleDrawRects.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c7/BallisticBalls.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c7/SimplePaint2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c7/KaleidoAnimate.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c7/RandomStringsWithArray.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c7/Checkers.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c7/GoMoku.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c7/BirthdayProblem.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

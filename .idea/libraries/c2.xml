@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="c2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c2/PrintSquareApplet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c2/JavaPops.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c2/InterestApplet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c2/Interest2Applet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c2/EnumDemoApplet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c2/TimedComputationApplet.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

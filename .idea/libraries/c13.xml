@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="c13">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c13/ScatterPlotTableDemo.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c13/TransparencyDemo.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c13/StatesAndCapitalsTableDemo.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c13/StrokeDemo.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c13/PaintWithOSCFinal.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c13/SillyStamper.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c13/HighLowWithImages.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c13/CustomComponentTest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c13/MandelbrotViewer.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c13/TestStopWatch2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c13/RadioButtonDemo.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c13/PaintWithOffScreenCanvas.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c13/PaintDemo.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c13/SoundAndCursorDemo.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c13/SimpleWebBrowserWithThread.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c13/ToolBarDemo.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

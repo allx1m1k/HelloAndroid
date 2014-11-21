@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="c10">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c10/LittlePentominosApplet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c10/SimpleInterpreter.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

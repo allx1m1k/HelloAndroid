@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="c12">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c12/TowersOfHanoiWithControls.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c12/ChatSimulation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c12/MultiprocessingDemo1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c12/ThreadTest2Applet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c12/EstimatePi.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c12/LittleQuicksortDemo.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c12/QuicksortThreadDemo.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c12/MultiprocessingDemo2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c12/ThreadTest1Applet.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

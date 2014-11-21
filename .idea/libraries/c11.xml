@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="c11">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c11/XMLDemo.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c11/SimplePaint2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

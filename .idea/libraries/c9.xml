@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="c9">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c9/ListDemo.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c9/SimpleParser3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c9/TowersOfHanoiApplet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c9/PostfixEval.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c9/SimpleParser5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c9/DepthBreadth.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c9/SortTree.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c9/FibonacciAndFactorial.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c9/Blobs.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="c3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c3/ListLettersApplet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c3/Interest3Applet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c3/ThreeN1Applet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c3/MovingRects.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c3/CountDivisorsApplet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c3/LengthConverterApplet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c3/StaticRects.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c3/SlidingCheckerboard.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c3/ComputeAverageApplet.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

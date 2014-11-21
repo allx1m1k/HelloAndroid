@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="c4">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c4/MosaicStrobeApplet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c4/MosaicConvertApplet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c4/GuessingGameApplet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c4/ThreeN2Applet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c4/RowsOfCharsApplet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c4/RandomBrightenApplet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c4/RandomMosaicWalkApplet.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

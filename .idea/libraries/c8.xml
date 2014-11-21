@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="c8">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c8/RomanConverter.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c8/FunctionEvaluator.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c8/SimpleCA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c8/SimpleGrapher.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c8/LengthConverter2Applet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JavaBook-v1/assets/c8/BigThreeNApplet.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -15,6 +15,7 @@
       <module fileurl="file://$PROJECT_DIR$/HelloApp/HelloApp.iml" filepath="$PROJECT_DIR$/HelloApp/HelloApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/IntentsLab/IntentsLab.iml" filepath="$PROJECT_DIR$/IntentsLab/IntentsLab.iml" />
       <module fileurl="file://$PROJECT_DIR$/IntentsLabTest/IntentsLabTest.iml" filepath="$PROJECT_DIR$/IntentsLabTest/IntentsLabTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaBook-v1/JavaBook-v1.iml" filepath="$PROJECT_DIR$/JavaBook-v1/JavaBook-v1.iml" />
       <module fileurl="file://$PROJECT_DIR$/LocationLab/LocationLab.iml" filepath="$PROJECT_DIR$/LocationLab/LocationLab.iml" />
       <module fileurl="file://$PROJECT_DIR$/ModernArtUILab/ModernArtUILab.iml" filepath="$PROJECT_DIR$/ModernArtUILab/ModernArtUILab.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyBrowser/MyBrowser.iml" filepath="$PROJECT_DIR$/MyBrowser/MyBrowser.iml" />
@@ -31,6 +32,7 @@
       <module fileurl="file://$PROJECT_DIR$/UILabsTest/UILabsTest.iml" filepath="$PROJECT_DIR$/UILabsTest/UILabsTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/WikiNotes/WikiNotes.iml" filepath="$PROJECT_DIR$/WikiNotes/WikiNotes.iml" />
       <module fileurl="file://$PROJECT_DIR$/activity-lifecycle/activity-lifecycle.iml" filepath="$PROJECT_DIR$/activity-lifecycle/activity-lifecycle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaBook-v1/assets/assets.iml" filepath="$PROJECT_DIR$/JavaBook-v1/assets/assets.iml" />
     </modules>
   </component>
 </project>

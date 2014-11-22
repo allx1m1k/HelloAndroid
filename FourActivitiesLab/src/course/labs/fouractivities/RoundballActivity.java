@@ -4,22 +4,26 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.webkit.WebView;
 
-
-public class WarOfWorldsActivity extends Activity {
+/**
+ * Created by dima on 22.11.2014.
+ */
+public class RoundballActivity extends Activity {
     WebView mWebView;
 
-    /**
-     * Called when the activity is first created.
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_other);
-        //initialize controls
+        //initialize view
         mWebView = (WebView) findViewById(R.id.webView);
 
+        //set JavaScript and DOM storage enabled
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.getSettings().setDomStorageEnabled(true);
+
         //load web content
-        mWebView.loadUrl("file:///android_asset/waroftheworlds.html");
+        mWebView.loadUrl("file:///android_asset/roundball/roundball.html");
+
 
     }
 }

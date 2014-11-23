@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">CkickMyLogo</string>
-    <string name="title">Please click the Logo</string>
+    <string name="title">Click the Logo and then Back</string>
 </resources>

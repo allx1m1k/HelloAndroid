@@ -10,42 +10,40 @@ import android.widget.ImageButton;
 
 public class ClickActivity extends Activity {
     private final static String TAG = "ClickMyLogo";
-    ImageButton mImageButton;
+    private ImageButton mImageButton;
+    private Intent intent;
     final String mFB = "https://en.wikipedia.org/wiki/Facebook";
     final String mGgl = "https://en.wikipedia.org/wiki/Google";
-    int selector = 0;
+    //initial selector value is relevant to facebook logo
+    private int selector = 0;
     /**
      * Called when the activity is first created.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        Log.i(TAG, "onCreate " + selector);
         setContentView(R.layout.main);
         mImageButton = (ImageButton) findViewById(R.id.imageButton);
+        //setting the first image and url - is facebook
+        mImageButton.setImageResource(R.drawable.facebook);
+        intent = new Intent(Intent.ACTION_VIEW);
 
         mImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "entered mLeftButton onClick");
-
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                if (selector == 0) {
-                    intent.setData(Uri.parse(mFB));
-                    mImageButton.setImageResource(R.drawable.google);
-                } else {
-                    intent.setData(Uri.parse(mGgl));
-                    mImageButton.setImageResource(R.drawable.facebook);
-                }
+                Log.i(TAG, "onClick " + selector);
+                //there are not any logic, just starting the given intent
+                //all magic: changing the logo and url is going on behind the scene in onPause and onResume methods
                 startActivity(intent);
-
             }
         });
-
+        super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void onPause() {
-        // change bitmap for button
+        Log.i(TAG, "onPause " + selector);
+        // evaluate the selector and change its value
         switch (selector) {
             case 0:
                 selector = 1;
@@ -58,8 +56,17 @@ public class ClickActivity extends Activity {
 
     @Override
     protected void onResume() {
+        Log.i(TAG, "onResume " + selector);
+        // change bitmap for button based on selector value
+        if (selector == 0) {
+            intent.setData(Uri.parse(mFB));
+            mImageButton.setImageResource(R.drawable.facebook);
+            //startActivity(intent);
+        } else {
+            intent.setData(Uri.parse(mGgl));
+            mImageButton.setImageResource(R.drawable.google);
+            //startActivity(intent);
+        }
         super.onResume();
     }
-
-
 }

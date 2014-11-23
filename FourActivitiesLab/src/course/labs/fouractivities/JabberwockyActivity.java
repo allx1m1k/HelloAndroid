@@ -73,7 +73,7 @@ public class JabberwockyActivity extends Activity {
             public void onClick(View v) {
                 //open picture with beast
                 Log.i(TAG, "entered mRightButton onClick");
-                mWebView.loadUrl("file:///android_asset/angraves-highscore6x6.png");
+                mWebView.loadUrl("file:///android_asset/wc2014postermiztersiah.png");
             }
         });
     }

@@ -37,6 +37,7 @@
       <module fileurl="file://$PROJECT_DIR$/WikiNotes/WikiNotes.iml" filepath="$PROJECT_DIR$/WikiNotes/WikiNotes.iml" />
       <module fileurl="file://$PROJECT_DIR$/activity-lifecycle/activity-lifecycle.iml" filepath="$PROJECT_DIR$/activity-lifecycle/activity-lifecycle.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaBook-v1/assets/assets.iml" filepath="$PROJECT_DIR$/JavaBook-v1/assets/assets.iml" />
+      <module fileurl="file://$PROJECT_DIR$/google-play-services_lib/google-play-services_lib.iml" filepath="$PROJECT_DIR$/google-play-services_lib/google-play-services_lib.iml" />
     </modules>
   </component>
 </project>

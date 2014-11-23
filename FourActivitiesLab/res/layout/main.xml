@@ -26,8 +26,8 @@
         android:layout_height="wrap_content"
         android:text="@string/buttonRight"
         android:id="@+id/buttonRight"
-        android:layout_alignBottom="@+id/buttonLeft"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignTop="@+id/buttonLeft"
+        android:layout_alignParentRight="true" />
 </RelativeLayout>
 
 

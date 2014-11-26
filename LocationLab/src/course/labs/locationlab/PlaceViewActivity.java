@@ -49,7 +49,7 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 		//View footerView = null;
 
         // Put divider between ToDoItems and FooterView
-        getListView().setFooterDividersEnabled(true);
+        //getListView().setFooterDividersEnabled(true);
 
         // DONE - Inflate footerView for footer_view.xml file
         LayoutInflater inflater = LayoutInflater.from(PlaceViewActivity.this);
@@ -60,7 +60,7 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
         mAdapter = new PlaceViewAdapter(getApplicationContext());
         setListAdapter(mAdapter);
 
-		// TODO - footerView must respond to user clicks, handling 3 cases:
+		// DONE - footerView must respond to user clicks, handling 3 cases:
 
 		// There is no current location - response is up to you. One good 
 		// solution is to disable the footerView until you have acquired a
@@ -85,60 +85,26 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
                 // Determine whether initial reading is
                 // "good enough". If not, register for
                 // further location updates
-
                 if (null == mLastLocationReading
                         || mLastLocationReading.getAccuracy() > mMinTime
                         || mLastLocationReading.getTime() < System.currentTimeMillis()
                         - mMinTime) {
 
                     return;
-                    // Register for network location updates
-                    /*
-                    if (null != mLocationManager
-                            .getProvider(LocationManager.NETWORK_PROVIDER)) {
-                        mLocationManager.requestLocationUpdates(
-                                LocationManager.NETWORK_PROVIDER, FIVE_MINS,
-                                mMinDistance, mLocationListener);
-                    }
-                    */
                 }
 
                 if (mAdapter.intersects(mLastLocationReading)) {
                     Log.i(TAG, "You already have this location badge.");
                     Toast.makeText(getApplicationContext(), "AAAA!", Toast.LENGTH_LONG);
                     return;
-
                 }
 
-
-                //download from web service
                 new PlaceDownloaderTask(PlaceViewActivity.this, sHasNetwork).execute(mLastLocationReading);
 
-                //
-                /*
-                if (mLastLocationReading != null) {
-
-                    //download information and than execute() see 11:00
-                    new PlaceDownloaderTask(PlaceViewActivity.this, sHasNetwork) {
-                        protected void onPostExecute(PlaceRecord result) {
-                            if (null != result && null != mParent.get()) {
-                                mParent.get().addNewPlace(result);
-                            }
-                        }
-                    };
-
-                }
-				*/
-				
-				
-				
-				
-				
-				
 			}
 
-		});
-
+        });
+        placesListView.addFooterView(footerView);
     }
 
 	@Override

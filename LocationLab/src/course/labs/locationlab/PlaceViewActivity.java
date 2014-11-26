@@ -186,9 +186,12 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 
 	// Callback method used by PlaceDownloaderTask
 	public void addNewPlace(PlaceRecord place) {
-		Log.i(TAG, "Entered addNewPlace()");
 
-		// TODO - Attempt to add place to the adapter, considering the following cases
+        Log.i(TAG, "Entered addNewPlace()");
+        Toast.makeText(getApplicationContext(), "addNewPlace() called!", Toast.LENGTH_SHORT).show();
+
+
+        // DONE - Attempt to add place to the adapter, considering the following cases
 
 		// A PlaceBadge for this location already exists. In this case issue a Toast message
 		// with the text - "You already have this location badge." Use the PlaceRecord 
@@ -204,25 +207,18 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 		// Do not add the PlaceBadge to the adapter
 		
 		// Otherwise - add the PlaceBadge to the adapter
-
-        mAdapter.add(place);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+        //https://class.coursera.org/android-002/forum/thread?thread_id=2947
+        //first test for place != null
+        if (place != null){
+            //then for no country name
+            if (place.getCountryName() != "") {
+                //then for intersects
+                if (!mAdapter.intersects(place.getLocation())) {
+                    //if all those tests were false, add the place to the adapter
+                    mAdapter.add(place);
+                }
+            }
+        }
 	}
 
 	// LocationListener methods

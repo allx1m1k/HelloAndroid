@@ -48,13 +48,17 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 		// You can use footer_view.xml to define the footer
 		//View footerView = null;
 
-
         // Put divider between ToDoItems and FooterView
         getListView().setFooterDividersEnabled(true);
 
         // DONE - Inflate footerView for footer_view.xml file
-        LayoutInflater inflater= LayoutInflater.from(PlaceViewActivity.this);
+        LayoutInflater inflater = LayoutInflater.from(PlaceViewActivity.this);
         View footerView = (TextView)inflater.inflate(R.layout.footer_view, null);
+
+        // Create a new PlaceViewAdapter for this ListActivity's ListView
+        placesListView.addFooterView(footerView);
+        mAdapter = new PlaceViewAdapter(getApplicationContext());
+        setListAdapter(mAdapter);
 
 		// TODO - footerView must respond to user clicks, handling 3 cases:
 
@@ -78,17 +82,42 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 			public void onClick(View arg0) {
 				Log.i(TAG, "Entered footerView.OnClickListener.onClick()");
 
+                // Determine whether initial reading is
+                // "good enough". If not, register for
+                // further location updates
 
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+                if (null == mLastLocationReading
+                        || mLastLocationReading.getAccuracy() > mMinTime
+                        || mLastLocationReading.getTime() < System.currentTimeMillis()
+                        - mMinTime) {
+
+                    // Register for network location updates
+                    /*
+                    if (null != mLocationManager
+                            .getProvider(LocationManager.NETWORK_PROVIDER)) {
+                        mLocationManager.requestLocationUpdates(
+                                LocationManager.NETWORK_PROVIDER, FIVE_MINS,
+                                mMinDistance, mLocationListener);
+                    }
+                    */
+                }
+
+
+                //
+                /*
+                if (mLastLocationReading != null) {
+
+                    //download information and than execute() see 11:00
+                    new PlaceDownloaderTask(PlaceViewActivity.this, sHasNetwork) {
+                        protected void onPostExecute(PlaceRecord result) {
+                            if (null != result && null != mParent.get()) {
+                                mParent.get().addNewPlace(result);
+                            }
+                        }
+                    };
+
+                }
+				*/
 				
 				
 				
@@ -99,11 +128,7 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 
 		});
 
-		placesListView.addFooterView(footerView);
-		mAdapter = new PlaceViewAdapter(getApplicationContext());
-		setListAdapter(mAdapter);
-
-	}
+    }
 
 	@Override
 	protected void onResume() {
@@ -130,7 +155,8 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 	@Override
 	protected void onPause() {
 
-		// TODO - unregister for location updates
+		// DONE - unregister for location updates
+        mLocationManager.removeUpdates(this);
 
 
 		

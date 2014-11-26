@@ -7,12 +7,10 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class PlaceViewActivity extends ListActivity implements LocationListener {
@@ -46,10 +44,17 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 		mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		ListView placesListView = getListView();
 
-		// TODO - add a footerView to the ListView
+		// DONE - add a footerView to the ListView
 		// You can use footer_view.xml to define the footer
+		//View footerView = null;
 
-		View footerView = null;
+
+        // Put divider between ToDoItems and FooterView
+        getListView().setFooterDividersEnabled(true);
+
+        // DONE - Inflate footerView for footer_view.xml file
+        LayoutInflater inflater= LayoutInflater.from(PlaceViewActivity.this);
+        View footerView = (TextView)inflater.inflate(R.layout.footer_view, null);
 
 		// TODO - footerView must respond to user clicks, handling 3 cases:
 

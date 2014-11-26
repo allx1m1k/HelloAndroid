@@ -1,17 +1,20 @@
-package com.example.mapdemo;
+/* package com.example.mapdemo;
+import android.util.Log;
 import com.google.android.gms.maps.*;
         import com.google.android.gms.maps.model.*;
         import android.app.Activity;
         import android.os.Bundle;
 
 public class MyMapsActivity extends Activity {
+    public final String TAG = "MyMaps";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, "onCreate");
         setContentView(R.layout.main);
 
-        // Get a handle to the Map Fragment
+        // Get a handle to the Map Fragment***
         GoogleMap map = ((MapFragment) getFragmentManager()
                 .findFragmentById(R.id.mapView)).getMap();
 
@@ -25,20 +28,20 @@ public class MyMapsActivity extends Activity {
                 .snippet("The most populous city in Australia.")
                 .position(sydney));
     }
-
-    /** https://developers.google.com/maps/documentation/android/start
-     * package com.example.mapdemo;
+*/
+//https://developers.google.com/maps/documentation/android/start
+package com.example.mapdemo;
 
      import android.app.Activity;
      import android.os.Bundle;
 
-     public class MainActivity extends Activity {
+     public class MyMapsActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.main);
     }
     }
-     */
-}
+
+

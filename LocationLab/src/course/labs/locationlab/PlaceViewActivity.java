@@ -91,6 +91,7 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
                         || mLastLocationReading.getTime() < System.currentTimeMillis()
                         - mMinTime) {
 
+                    return;
                     // Register for network location updates
                     /*
                     if (null != mLocationManager
@@ -102,6 +103,16 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
                     */
                 }
 
+                if (mAdapter.intersects(mLastLocationReading)) {
+                    Log.i(TAG, "You already have this location badge.");
+                    Toast.makeText(getApplicationContext(), "AAAA!", Toast.LENGTH_LONG);
+                    return;
+
+                }
+
+
+                //download from web service
+                new PlaceDownloaderTask(PlaceViewActivity.this, sHasNetwork).execute(mLastLocationReading);
 
                 //
                 /*
@@ -185,8 +196,8 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 		// Do not add the PlaceBadge to the adapter
 		
 		// Otherwise - add the PlaceBadge to the adapter
-		
 
+        mAdapter.add(place);
 		
 		
 		
@@ -210,7 +221,7 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 	@Override
 	public void onLocationChanged(Location currentLocation) {
 
-		// TODO - Update last location considering the following cases.
+		// DONE - Update last location considering the following cases.
 		// 1) If there is no last location, set the last location to the current
 		// location.
 		// 2) If the current location is older than the last location, ignore
@@ -218,14 +229,16 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 		// 3) If the current location is newer than the last locations, keep the
 		// current location.
 
-		
-		
-		
-		
-		
-		
-		mLastLocationReading = null;
-		
+        // My implementation: https://class.coursera.org/android-002/forum/thread?thread_id=2947
+        // case 1 & 3:
+        if (mLastLocationReading == null || ageInMilliseconds(currentLocation) < ageInMilliseconds(mLastLocationReading)) {
+            mLastLocationReading = currentLocation;
+            // case 2:
+        } else if(currentLocation.getTime() < mLastLocationReading.getTime()) {
+            // do nothing, ignore the current location
+            Log.i(TAG, "currentlocation is newer than the last loactoin");
+        }
+
 	}
 
 	@Override

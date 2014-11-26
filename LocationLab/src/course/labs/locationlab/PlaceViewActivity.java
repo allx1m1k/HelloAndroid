@@ -147,18 +147,26 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 
 		startMockLocationManager();
 
-		// TODO - Check NETWORK_PROVIDER for an existing location reading.
+		// DONE - Check NETWORK_PROVIDER for an existing location reading.
 		// Only keep this last reading if it is fresh - less than 5 minutes old
+		//mLastLocationReading = null;
 
-		
-		
-		
-		mLastLocationReading = null;
-		
-
-		// TODO - register to receive location updates from NETWORK_PROVIDER
+        // My implementation below: https://class.coursera.org/android-002/forum/thread?thread_id=2947
+        mLastLocationReading = mLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
 
+        if (mLastLocationReading != null && ageInMilliseconds(mLastLocationReading) > FIVE_MINS) {
+            mLastLocationReading = null;
+        }
+
+        if (mLocationManager.getProvider(LocationManager.NETWORK_PROVIDER) != null) {
+            Toast.makeText(getApplicationContext(), "On resume called: Provider is not null!", Toast.LENGTH_SHORT).show();
+
+        }
+
+        // DONE - register to receive location updates from NETWORK_PROVIDER
+
+        mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, mMinTime, mMinDistance, this);
 		
 		
 	}

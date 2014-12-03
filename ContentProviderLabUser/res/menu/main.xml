@@ -1,18 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
     <item
         android:id="@+id/delete_badges"
-        android:title="@string/delete"/>
-    
+        android:icon="@drawable/ic_menu_help"
+        android:title="@string/delete">
+    </item>
      <item
 		android:id="@+id/place_one"
-        android:title="@string/place_one"/>
-    
+         android:icon="@drawable/ic_menu_help"
+         android:title="@string/place_one">
+     </item>
     <item
 		android:id="@+id/place_no_country"
-        android:title="@string/place_no_country"/>
-    
+        android:icon="@drawable/ic_menu_help"
+        android:title="@string/place_no_country">
+    </item>
     <item
 		android:id="@+id/place_two"
-        android:title="@string/place_two"/>
+        android:icon="@drawable/ic_menu_help"
+        android:title="@string/place_two">
+    </item>
 </menu>
+
+

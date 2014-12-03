@@ -59,13 +59,6 @@ public class PlaceViewActivity extends ListActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        ListView placesListView = getListView();
-        // DONE - add a footerView to the ListView
-        // You can use footer_view.xml to define the footer
-        View inflater = getLayoutInflater().inflate(R.layout.footer_view, null);
-        View footerView = inflater.findViewById(R.id.footer);
-
 
         if (!Environment.getExternalStorageState().equals(
 				Environment.MEDIA_MOUNTED)) {
@@ -75,12 +68,19 @@ public class PlaceViewActivity extends ListActivity implements
 			finish();
 		}
 
-
+        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        LayoutInflater inflater = getLayoutInflater();
+        View mPlaceView = inflater.inflate(R.layout.footer_view, null);
+        getListView().addFooterView(mPlaceView);
+        TextView footerView = (TextView) mPlaceView.findViewById(R.id.footer);
+        getListView().addFooterView(footerView);
 		
 		// Can be removed after implementing the DONE above
-		if (null == footerView ) {
-        	return;
-		}
+		//if (null == footerView ) {
+        //	return;
+		//}
+
+
 
 		// DONE - footerView must respond to user clicks, handling 3 cases:
 
@@ -99,8 +99,9 @@ public class PlaceViewActivity extends ListActivity implements
 		// PlaceBadge.
 
 		footerView.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
+
+            @Override
+            public void onClick(View view) {
                 Log.i(TAG, "Entered footerView.OnClickListener.onClick()");
 
                 if (mLastLocationReading != null) {
@@ -117,22 +118,26 @@ public class PlaceViewActivity extends ListActivity implements
             }
 		});
 
-
-        placesListView.addFooterView(footerView);
-
+        //placesListView.addFooterView(footerView);
 		// DONE - Create and set empty PlaceViewAdapter
 		//mCursorAdapter = new PlaceViewAdapter(getApplicationContext());
         //mCursorAdapter = new PlaceViewAdapter(getApplicationContext(), new C, 1);
         //https://class.coursera.org/android-002/forum/thread?thread_id=293
         //also see https://class.coursera.org/android-002/forum/thread?thread_id=293&sort=newest !!!
-        mCursorAdapter = new PlaceViewAdapter(getApplicationContext(), null,
-                mCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        ContentResolver contentResolver = getContentResolver();
+        Cursor cursor = contentResolver.query(PlaceBadgesContract.CONTENT_URI, null, null, null, null);
+        mCursorAdapter = new PlaceViewAdapter(getApplicationContext(), cursor, 0);
+       // mCursorAdapter = new PlaceViewAdapter(getApplicationContext(), null, mCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+
 
 		// DONE - Initialize the loader
         //https://class.coursera.org/android-002/forum/thread?thread_id=293
+        //  getLoaderManager().initLoader(0, null, this);
         getLoaderManager().initLoader(0, null, PlaceViewActivity.this);
         setListAdapter(mCursorAdapter);
-		
+
+        //
+
 	}
 
 	@Override
@@ -279,7 +284,8 @@ public class PlaceViewActivity extends ListActivity implements
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //super.onCreateOptionsMenu(menu);
+        //Dima super.onCreateOptionsMenu(menu);
+        Log.i(TAG, "Entered onCreateOptionsMenu");
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         return true;
@@ -302,6 +308,7 @@ public class PlaceViewActivity extends ListActivity implements
 			mMockLocationProvider.pushLocation(38.996667, -76.9275);
 			return true;
 		default:
+			//return false;
 			return super.onOptionsItemSelected(item);
 		}
 	}

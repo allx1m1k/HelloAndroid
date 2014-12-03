@@ -109,7 +109,8 @@ public class PlaceViewActivity extends ListActivity implements
                         Toast.makeText(getApplicationContext(), "Locations intersects!!", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getApplicationContext(), "new PlaceDownloaderTask started!", Toast.LENGTH_SHORT).show();
-                        new PlaceDownloaderTask(PlaceViewActivity.this, false).execute(mLastLocationReading);
+                        Log.i(TAG, "Starting place download");
+                        new PlaceDownloaderTask(PlaceViewActivity.this, sHasNetwork).execute(mLastLocationReading);
                     }
                 } else {
                     Log.i(TAG, "Location not reachable");
@@ -128,6 +129,10 @@ public class PlaceViewActivity extends ListActivity implements
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(PlaceBadgesContract.CONTENT_URI, null, null, null, null);
         mCursorAdapter = new PlaceViewAdapter(getApplicationContext(), cursor, 0);
+
+        //Dima link Adapter to ListView
+        setListAdapter(mCursorAdapter);
+        getListView().setAdapter(mCursorAdapter);
        // mCursorAdapter = new PlaceViewAdapter(getApplicationContext(), null, mCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 
 
@@ -135,7 +140,7 @@ public class PlaceViewActivity extends ListActivity implements
         //https://class.coursera.org/android-002/forum/thread?thread_id=293
         //  getLoaderManager().initLoader(0, null, this);
         getLoaderManager().initLoader(0, null, PlaceViewActivity.this);
-        setListAdapter(mCursorAdapter);
+
 
         //
 
@@ -209,7 +214,7 @@ public class PlaceViewActivity extends ListActivity implements
 
         }
         else mCursorAdapter.add(place);
-        //else mContext.getContentResolver().insert(PlaceBadgesContract.CONTENT_URI, values);
+        //else getContentResolver().insert(PlaceBadgesContract.CONTENT_URI, values );
     }
 		
 		
@@ -272,9 +277,10 @@ public class PlaceViewActivity extends ListActivity implements
 
         //this is optional
         String select = "((" + PlaceBadgesContract._ID + " NOTNULL))";
+        String sortOrder = PlaceBadgesContract._ID + " ASC";
 
 		// DONE - Create a new CursorLoader and return it
-        return new CursorLoader(getApplicationContext(), PlaceBadgesContract.CONTENT_URI, CONTACTS_ROWS, select, null, null);
+        return new CursorLoader(this, PlaceBadgesContract.CONTENT_URI, CONTACTS_ROWS, select, null, sortOrder);
         //https://class.coursera.org/android-002/forum/thread?thread_id=293
         //return new CursorLoader(getApplicationContext(),
         //        PlaceBadgesContract.CONTENT_URI, null, null, null, null);
@@ -284,11 +290,10 @@ public class PlaceViewActivity extends ListActivity implements
 	public void onLoadFinished(Loader<Cursor> newLoader, Cursor newCursor) {
 
 		
-		// TODO - Swap in the newCursor
+		// DONE - Swap in the newCursor
+        mCursorAdapter.swapCursor(newCursor);
 
-	
-	
-	}
+    }
 
 	@Override
 	public void onLoaderReset(Loader<Cursor> newLoader) {

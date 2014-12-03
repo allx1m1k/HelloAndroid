@@ -79,8 +79,9 @@ public class PlaceViewAdapter extends CursorAdapter {
         //https://class.coursera.org/android-002/forum/thread?thread_id=2761
         //The TODOs that were initially already done in the skeleton was an oversight. That code was supposed to have been removed before posting the assignment.
 
-        super.swapCursor(newCursor);
-        return newCursor;
+        //super.swapCursor(newCursor);
+        //return newCursor;
+        return super.swapCursor(newCursor);
 
     }
 

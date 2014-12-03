@@ -71,7 +71,7 @@ public class PlaceViewActivity extends ListActivity implements
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         LayoutInflater inflater = getLayoutInflater();
         View mPlaceView = inflater.inflate(R.layout.footer_view, null);
-        getListView().addFooterView(mPlaceView);
+
         TextView footerView = (TextView) mPlaceView.findViewById(R.id.footer);
         getListView().addFooterView(footerView);
 		
@@ -118,6 +118,7 @@ public class PlaceViewActivity extends ListActivity implements
             }
 		});
 
+        getListView().addFooterView(footerView);
         //placesListView.addFooterView(footerView);
 		// DONE - Create and set empty PlaceViewAdapter
 		//mCursorAdapter = new PlaceViewAdapter(getApplicationContext());
@@ -146,18 +147,26 @@ public class PlaceViewActivity extends ListActivity implements
 
 		startMockLocationManager();
 
-		// TODO - Check NETWORK_PROVIDER for an existing location reading.
+		// DONE - Check NETWORK_PROVIDER for an existing location reading.
 		// Only keep this last reading if it is fresh - less than 5 minutes old
 
-		
-		
-		
-		
-		
-		
-		// TODO - register to receive location updates from NETWORK_PROVIDER
+        // My implementation below: https://class.coursera.org/android-002/forum/thread?thread_id=2947
+        mLastLocationReading = mLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
 
+        if (mLastLocationReading != null && ageInMilliseconds(mLastLocationReading) > FIVE_MINS) {
+            mLastLocationReading = null;
+        }
+
+        if (mLocationManager.getProvider(LocationManager.NETWORK_PROVIDER) != null) {
+            Toast.makeText(getApplicationContext(), "On resume called: Provider is not null!", Toast.LENGTH_SHORT).show();
+
+        }
+		
+		
+		
+		// DONE - register to receive location updates from NETWORK_PROVIDER
+        mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, mMinTime, mMinDistance, this);
 		
 		
 	}
@@ -166,9 +175,6 @@ public class PlaceViewActivity extends ListActivity implements
 	protected void onPause() {
 
 		// TODO - unregister for location updates
-
-		
-		
 		shutdownMockLocationManager();
 		super.onPause();
 
@@ -222,9 +228,13 @@ public class PlaceViewActivity extends ListActivity implements
 		// the current location
 		// 3) If the current location is newer than the last locations, keep the
 		// current location.
-
-
-		
+        if (mLastLocationReading == null || ageInMilliseconds(currentLocation) < ageInMilliseconds(mLastLocationReading)) {
+            mLastLocationReading = currentLocation;
+            // case 2:
+        } else if(currentLocation.getTime() < mLastLocationReading.getTime()) {
+            // do nothing, ignore the current location
+            Log.i(TAG, "currentlocation is newer than the last location");
+        }
 		
 		
 		
@@ -250,11 +260,24 @@ public class PlaceViewActivity extends ListActivity implements
 	@Override
 	public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
 
-		
+        //getting the attributes
+        final String[] CONTACTS_ROWS = new String[] {
+                PlaceBadgesContract._ID,
+                PlaceBadgesContract.FLAG_BITMAP_PATH,
+                PlaceBadgesContract.COUNTRY_NAME,
+                PlaceBadgesContract.PLACE_NAME,
+                PlaceBadgesContract.LAT,
+                PlaceBadgesContract.LON
+        };
+
+        //this is optional
+        String select = "((" + PlaceBadgesContract._ID + " NOTNULL))";
+
 		// DONE - Create a new CursorLoader and return it
+        return new CursorLoader(getApplicationContext(), PlaceBadgesContract.CONTENT_URI, CONTACTS_ROWS, select, null, null);
         //https://class.coursera.org/android-002/forum/thread?thread_id=293
-        return new CursorLoader(getApplicationContext(),
-                PlaceBadgesContract.CONTENT_URI, null, null, null, null);
+        //return new CursorLoader(getApplicationContext(),
+        //        PlaceBadgesContract.CONTENT_URI, null, null, null, null);
 	}
 
 	@Override

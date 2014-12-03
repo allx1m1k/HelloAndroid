@@ -73,7 +73,7 @@ public class PlaceViewActivity extends ListActivity implements
         View mPlaceView = inflater.inflate(R.layout.footer_view, null);
 
         TextView footerView = (TextView) mPlaceView.findViewById(R.id.footer);
-        getListView().addFooterView(footerView);
+        //getListView().addFooterView(footerView);
 		
 		// Can be removed after implementing the DONE above
 		//if (null == footerView ) {

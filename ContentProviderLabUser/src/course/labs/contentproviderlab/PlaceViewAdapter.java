@@ -16,6 +16,7 @@ import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ public class PlaceViewAdapter extends CursorAdapter {
 	private static LayoutInflater sLayoutInflater = null;
 	private Context mContext;
 	private String mBitmapStoragePath;
+    public static final String TAG = "PlaceViewAdapter";
 
 	public PlaceViewAdapter(Context context, Cursor cursor, int flags) {
 		super(context, cursor, flags);
@@ -57,15 +59,27 @@ public class PlaceViewAdapter extends CursorAdapter {
 	@Override
 	public Cursor swapCursor(Cursor newCursor) {
 
-		// TODO - clear the ArrayList list so it contains
+		// DONE - clear the ArrayList list so it contains
 		// the current set of PlaceRecords. Use the
 		// getPlaceRecordFromCursor() method as you add the
 		// cursor's places to the list
+        //https://class.coursera.org/android-002/forum/thread?thread_id=2812
 
-        //super
-        //mPlaceRecords.getPlaceRecordFromCursor(newCursor);
-        //getPlaceRecordFromCursor(newCursor);
-        //return newCursor;
+/**
+
+        mPlaceRecords.clear();
+        if (newCursor!=null && newCursor.moveToFirst()) {
+            do {
+                mPlaceRecords.add(getPlaceRecordFromCursor(newCursor));
+            } while (newCursor.moveToNext());
+        }
+
+ **/
+
+        //https://class.coursera.org/android-002/forum/thread?thread_id=2761
+        //The TODOs that were initially already done in the skeleton was an oversight. That code was supposed to have been removed before posting the assignment.
+        super.swapCursor(newCursor);
+        return newCursor;
 
     }
 
@@ -134,17 +148,17 @@ public class PlaceViewAdapter extends CursorAdapter {
 			ContentValues values = new ContentValues();
 
 			// TODO - Insert new record into the ContentProvider
+            //https://class.coursera.org/android-002/forum/thread?thread_id=2761
+            values.put(PlaceBadgesContract.COUNTRY_NAME, listItem.getCountryName());
+            values.put(PlaceBadgesContract.FLAG_BITMAP_PATH, listItem.getFlagBitmapPath());
+            values.put(PlaceBadgesContract.PLACE_NAME, listItem.getPlace());
+            values.put(PlaceBadgesContract.LAT, listItem.getLocation().getLatitude());
+            values.put(PlaceBadgesContract.LON, listItem.getLocation().getLongitude());
 
+            mContext.getContentResolver().insert(PlaceBadgesContract.CONTENT_URI, values);
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
+            Log.i(TAG, "Passed ContentResolver insert");
+
         }
 
 	}

@@ -107,7 +107,7 @@ public class MainActivity extends Activity {
                 finish();
             }
         };
-        mImageButton.postDelayed(r, 3000);
+        mImageButton.postDelayed(r, 2000);
     }
 
     /**

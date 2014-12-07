@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -78,9 +79,18 @@ public class MainActivity extends Activity {
             case 1:
                 selector = 0;
         }
+        mImageButton.postDelayed(r, 3000);
+        SystemClock.sleep(3000);
         super.onPause();
+
     }
 
+    Runnable r = new Runnable() {
+        @Override
+        public void run() {
+            Log.i(TAG, "Entered run");
+        }
+    };
     @Override
     protected void onResume() {
         Log.i(TAG, "onResume " + selector);

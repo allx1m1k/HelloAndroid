@@ -16,9 +16,9 @@ public class MainActivity extends Activity {
     private ImageButton mImageButton;
     private Intent intent;
     private Intent emailIntent;
-    final String mFB = "https://en.wikipedia.org/wiki/Facebook";
-    final String mGgl = "https://en.wikipedia.org/wiki/Google";
-    //initial selector value is relevant to facebook logo
+    //final String mFB = "https://en.wikipedia.org/wiki/Facebook";
+    //final String mGgl = "https://en.wikipedia.org/wiki/Google";
+    //initial selector value is relevant to R.drawable.flower320x480
     private int selector = 0;
     /**
      * Called when the activity is first created.
@@ -30,31 +30,35 @@ public class MainActivity extends Activity {
         mImageButton = (ImageButton) findViewById(R.id.imageButton);
         //setting the first image and url - is facebook
         mImageButton.setImageResource(R.drawable.flower320x480);
-        //old intent = new Intent(Intent.ACTION_VIEW);
         intent = new Intent(Intent.ACTION_VIEW);
 
 
-        //setOnClickListener
+        //setOnClickListener in order to display desirable image
         mImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "onClick " + selector);
-                //there are not any logic, just starting the given intent
-                //all magic: changing the logo and url is going on behind the scene in onPause and onResume methods
-                //startActivity(intent);
+                //the logic here is to evaluate the flag selector
+                //and based on evaluated value we have to display the image
+                // selector = 0 -> R.drawable.flower320x480
+                // selector = 1 -> R.drawable.flower480x800
+                switch (selector) {
+                    case 0:
+                        selector = 1;
+                        mImageButton.setImageResource(R.drawable.flower480x800);
+                        break;
+                    case 1:
+                        selector = 0;
+                        mImageButton.setImageResource(R.drawable.flower320x480);
+                }
             }
         });
 
-        //setOnLong
+        //setOnLongClickListenet in order to call email Client
         mImageButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 Log.i(TAG, "onLongClick " + selector);
-                //startActivity(emailIntent);
-                //Intent emailIntent = new Intent(Intent.ACTION_SENDTO,Uri.fromParts("mailto","abc@gmail.com", null));
-                //Intent email = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "mail_to_send", null));
-                //emailIntent.putExtra(Intent.EXTRA_SUBJECT, "EXTRA_SUBJECT");
-                //startActivity(Intent.createChooser(emailIntent, "Send email..."));
                 sendEmail();
                 return true;
             }
@@ -82,11 +86,11 @@ public class MainActivity extends Activity {
         Log.i(TAG, "onResume " + selector);
         // change bitmap for button based on selector value
         if (selector == 0) {
-            intent.setData(Uri.parse(mFB));
+            //intent.setData(Uri.parse(mFB));
             mImageButton.setImageResource(R.drawable.flower320x480);
             //startActivity(intent);
         } else {
-            intent.setData(Uri.parse(mGgl));
+            //intent.setData(Uri.parse(mGgl));
             mImageButton.setImageResource(R.drawable.flower480x800);
             //startActivity(intent);
         }

@@ -2,14 +2,23 @@ package course.examples.fun;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.util.List;
+
+/**
+ * dima
+ * see http://stackoverflow.com/questions/9948373/android-share-plain-text-using-intent-to-all-messaging-apps
+ */
 
 public class MainActivity extends Activity {
+    public static final CharSequence CHOOSER_TEXT = "Creating a message with...";
     private final static String TAG = "PictureForMyBeloved";
     private ImageButton mImageButton;
     //initial selector value is relevant to R.drawable.flower320x480
@@ -119,18 +128,27 @@ public class MainActivity extends Activity {
         String subject = "To my Beloved";
         String body = "I love you!";
         //Create an Intent to
-        final Intent result = new Intent(android.content.Intent.ACTION_SEND);
-        result.setType("plain/text");
-        result.putExtra(android.content.Intent.EXTRA_EMAIL, TO);
-        result.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
-        result.putExtra(android.content.Intent.EXTRA_TEXT, body);
-        try {
-            Intent mailer = Intent.createChooser(result, null);
-            startActivity(mailer);
-            Log.i("Finished sending email...", "");
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(MainActivity.this,
-                    "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        Intent baseIntent = new Intent(Intent.ACTION_SEND, null);
+        baseIntent.setType("text/plain");
+        baseIntent.addCategory(Intent.CATEGORY_DEFAULT);
+        //baseIntent.putExtra(android.content.Intent.EXTRA_EMAIL, TO);
+        baseIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
+        baseIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
+        Intent messageIntent = Intent.createChooser(baseIntent, CHOOSER_TEXT);
+        PackageManager pm = getPackageManager();
+        List<ResolveInfo> activityList = pm.queryIntentActivities(messageIntent, 0);
+        Log.i(TAG, String.valueOf(activityList.size()));
+        Log.i(TAG, "Action for message is " + messageIntent.getAction());
+        Log.i(TAG, "Data for message is " + messageIntent.getData());
+        // Verify the intent will resolve to at least one activity
+        if (activityList.size() >= 0) {
+            try {
+                startActivity(messageIntent);
+                Log.i("Finished sending email...", "");
+            } catch (android.content.ActivityNotFoundException ex) {
+                Toast.makeText(MainActivity.this,
+                        "There is no email client installed.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

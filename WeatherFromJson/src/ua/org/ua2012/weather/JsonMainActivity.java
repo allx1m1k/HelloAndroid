@@ -3,14 +3,14 @@ package ua.org.ua2012.weather;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import org.apache.http.util.ByteArrayBuffer;
 
 import android.app.ListActivity;
@@ -26,9 +26,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
+import org.json.JSONObject;
 
 public class JsonMainActivity extends ListActivity {
 
@@ -36,6 +34,9 @@ public class JsonMainActivity extends ListActivity {
 	private static final int CODE_ERROR = 1;
 	private static final String TAG = "PlacesFromJson Example";
 
+    private static final String COORD_LAT = "48.358311";
+    private static final String COORD_LNG = "24.407369";
+    private static final String USRNAME = "allx1m1k";
 	private static final String COORD_N = "45";
 	private static final String COORD_S = "-10";
 	private static final String COORD_W = "-20";
@@ -44,7 +45,13 @@ public class JsonMainActivity extends ListActivity {
 	private ProgressDialog dialog;
 	
 	private GeonameList cities;
-	
+    //dima
+    private WeatherObservationList observations;
+    private WeatherObservations observationsJson;
+    private JsonObject jsonObject;
+    private JsonElement jsonElement;
+
+
 	private SimpleAdapter adapter;
 	
 	@Override
@@ -65,12 +72,19 @@ public class JsonMainActivity extends ListActivity {
 		public void handleMessage(Message msg) {
 			dialog.dismiss();
 			if (msg.what == CODE_ERROR) {
-				Toast.makeText(JsonMainActivity.this, "Service error.", Toast.LENGTH_SHORT).show();
+				Toast.makeText(JsonMainActivity.this, "Service error.", Toast.LENGTH_LONG).show();
 			}
+            /* dima
 			else if (cities != null && cities.getGeonames() != null) {
 				Log.i(TAG, "Cities found: " + cities.getGeonames().size());
 				buildList();
-			}
+		    */
+            else if (observationsJson != null && observationsJson.getStationName() != null) {
+                Log.i(TAG, "Weather found: " + observationsJson.getWeatherCondition());
+                // dima
+                // buildList();
+                myBuildList();
+            }
 		}
 	};
 	
@@ -85,25 +99,76 @@ public class JsonMainActivity extends ListActivity {
 
 				// init stuff.
 				Looper.prepare();
-				cities = new GeonameList();
+				//dima
+                //cities = new GeonameList();
+                //jsonElement = getJsonObject(wsUrl, getApplicationContext());
+
+                observationsJson = new WeatherObservations();
+
+
 				boolean error = false;
 
 				// build the webservice URL from parameters.
-				String wsUrl = "http://api.geonames.org/citiesJSON?lang=en&username=allx1m1k";
+				/*dima
+                String wsUrl = "http://api.geonames.org/citiesJSON?lang=en&username=allx1m1k";
 				wsUrl += "&north="+COORD_N;
 				wsUrl += "&south="+COORD_S;
 				wsUrl += "&east="+COORD_E;
 				wsUrl += "&west="+COORD_W;
-				
+				*/
+                String wsUrl = "http://api.geonames.org/findNearByWeatherJSON?formatted=true";
+                wsUrl += "&lat="+COORD_LAT;
+                wsUrl += "&lng="+COORD_LNG;
+                wsUrl += "&username="+USRNAME;
+                wsUrl += "&style=full";
+
+
+
 				String wsResponse = "";
 
 				try {
 					// call the service via HTTP.
 					wsResponse = readStringFromUrl(wsUrl);
-					
+                    jsonObject = getJsonObject(wsResponse, getApplicationContext());
+                    jsonElement = jsonObject.get("weatherObservation");
+
+
 					// deserialize the JSON response to the cities objects.
-					cities = new Gson().fromJson(wsResponse, GeonameList.class);
-				}
+					//dima
+					// cities = new Gson().fromJson(wsResponse, GeonameList.class);
+                    //dima
+                    // observations = new Gson().fromJson(wsResponse, WeatherObservationList.class);
+                    //Type listType = new TypeToken<List<WeatherObservationList>>() {}.getType();
+                    //observations = new Gson().fromJson(wsResponse, listType);
+
+                    //get JsonElement
+                    //jsonObject = getJsonObject(wsUrl, getApplicationContext());
+
+
+
+                    //stackowerflow
+                    Gson gson = new Gson();
+                    JsonParser parser = new JsonParser();
+                    //JsonArray jArray = parser.parse(wsResponse).getAsJsonArray();
+                    //jsonObject = parser.parse(wsResponse).getAsJsonObject();
+
+
+
+                    //ArrayList<WeatherObservationList> lcs = new ArrayList<WeatherObservationList>();
+                    //Type listType = new TypeToken<List<WeatherObservations>>() {}.getType();
+                    observationsJson = new Gson().fromJson(jsonElement, WeatherObservations.class);
+
+/*
+                    for(JsonElement obj : jArray )
+                    {
+                        //channelSearchEnum cse = gson.fromJson( obj , channelSearchEnum.class);
+                        Type listType = new TypeToken<List<WeatherObservationList>>() {}.getType();
+                        observations = new Gson().fromJson(wsResponse, listType);
+                        lcs.add(observations);
+                    }
+*/
+
+                }
 				catch (IOException e) {
 					// IO exception
 					Log.e(TAG, e.getMessage(), e);
@@ -126,14 +191,62 @@ public class JsonMainActivity extends ListActivity {
 				}
 				else {
 					// everything ok: tell the handler to show cities list.
-					handler.sendEmptyMessage(CODE_OK);
+                    //Log.i(TAG, "Долгота JsonObj" + jsonObject.get("lng"));
+                    Log.i(TAG, "Долгота WeatheObservations" + observationsJson.getLat());
+                    handler.sendEmptyMessage(CODE_OK);
 				}
 			}
 		};
 
 		// start the thread.
+        //Log.i(TAG, "Weather found in callService: " + observations.getWeatherObservations().size());
 		loader.start();
+
 	}
+
+    private void myBuildList() {
+        // init stuff.
+        List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+        Map<String, String> currentChildMap = null;
+        String line1;
+        String line2;
+        String line3; //Lat
+        String line4; //Lng
+
+        // cycle on the cities and create list entries.
+/*
+        for (WeatherObservations weather : observations.getWeatherObservations()) {
+            currentChildMap = new HashMap<String, String>();
+            data.add(currentChildMap);
+
+            line1 = "Станция: " + weather.getStationName();
+            line2 = "Погодные условия: " + weather.getWeatherCondition();
+            line3 = "Широта: " + weather.getLat(); //latitude
+            line4 = "Долгота: " +weather.getLng(); //longitude
+
+
+            currentChildMap.put("STANTION", line1);
+            currentChildMap.put("CONDITION", line2);
+            currentChildMap.put("LAT", line3);
+            currentChildMap.put("LNG", line4);
+        }
+
+*/
+        Log.i(TAG, "Долгота WeatheObservations for TextView is :" + observationsJson.getLat());
+        Log.i(TAG, "Станция WeatheObservations for TextView is :" + observationsJson.getStationName());
+
+        line1 = "Станция: " + observationsJson.getStationName();
+        line2 = "Погодные условия: " + observationsJson.getWeatherCondition();
+        line3 = "Широта " + observationsJson.getLat();
+        line4 = "Долгота " + observationsJson.getLng();
+
+        // create the list adapter from the created map.
+        adapter = new SimpleAdapter(this, data, R.layout.mysimple_list_item_2,
+                new String[] { "STANTION", "CONDITION", "LAT", "LNG" },
+                new int[] { R.id.text1, R.id.text2, R.id.text3, R.id.text4 });
+        setListAdapter(adapter);
+
+    }
 	
 	private void buildList() {
 		
@@ -241,4 +354,44 @@ public class JsonMainActivity extends ListActivity {
 			connectionWifi = infoWifi.getState();
 		return (connectionMobi == NetworkInfo.State.CONNECTED) || (connectionWifi == NetworkInfo.State.CONNECTED);
 	}
+
+    public static JsonElement getJsonElement(String response, Context context) {
+        JsonParser parser = new JsonParser();
+        JsonElement element = null;
+
+        try {
+            element = parser.parse(response);
+        } catch (JsonParseException e) {
+            e.printStackTrace();
+            //showErrorNetworkMessage(context);
+            element = null;
+        }
+
+        return element;
+    }
+
+
+    public static JsonObject getJsonObject(String response, Context context) {
+        if (response == null || response.length() <= 0) {
+            return null;
+        }
+
+        JsonElement element = getJsonElement(response, context);
+        JsonObject obj = null;
+
+        if (element != null && element.isJsonObject()) {
+            try {
+                obj = element.getAsJsonObject();
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+                obj = null;
+            }
+        } else {
+            Log.i(TAG, "JsonElement is not JsonObject");
+        }
+
+        return obj;
+    }
+
+
 }

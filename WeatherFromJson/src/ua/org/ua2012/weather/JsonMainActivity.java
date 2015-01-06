@@ -3,16 +3,13 @@ package ua.org.ua2012.weather;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.*;
 
 import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
 import org.apache.http.util.ByteArrayBuffer;
-
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -26,7 +23,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
-import org.json.JSONObject;
+
 
 public class JsonMainActivity extends ListActivity {
 
@@ -37,27 +34,28 @@ public class JsonMainActivity extends ListActivity {
     private static final String COORD_LAT = "48.358311";
     private static final String COORD_LNG = "24.407369";
     private static final String USRNAME = "allx1m1k";
-	private static final String COORD_N = "45";
+/*
+	dima depricated
+    private static final String COORD_N = "45";
 	private static final String COORD_S = "-10";
 	private static final String COORD_W = "-20";
 	private static final String COORD_E = "55";
-	
+*/
 	private ProgressDialog dialog;
-	
-	private GeonameList cities;
-    //dima
-    private WeatherObservationList observations;
+
+    //dima depricated
+    private GeonameList cities;
+    //dima added
     private WeatherObservations observationsJson;
     private JsonObject jsonObject;
     private JsonElement jsonElement;
-
-
 	private SimpleAdapter adapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		callService();
+		// Call the web-service from geonames.org
+        callService();
 	}
 
 	@Override
@@ -74,22 +72,24 @@ public class JsonMainActivity extends ListActivity {
 			if (msg.what == CODE_ERROR) {
 				Toast.makeText(JsonMainActivity.this, "Service error.", Toast.LENGTH_LONG).show();
 			}
-            /* dima
+            /* dima depricated
 			else if (cities != null && cities.getGeonames() != null) {
 				Log.i(TAG, "Cities found: " + cities.getGeonames().size());
 				buildList();
 		    */
             else if (observationsJson != null && observationsJson.getStationName() != null) {
                 Log.i(TAG, "Weather found: " + observationsJson.getWeatherCondition());
-                // dima
+                // dima depricated
                 // buildList();
+
+                // dima added
+                // Build the text field for View
                 myBuildList();
             }
 		}
 	};
 	
 	private void callService() {
-
 		// Show a loading dialog.
 		dialog = ProgressDialog.show(this, "Loading", "Calling GeoNames web service...", true, false);
 
@@ -99,66 +99,43 @@ public class JsonMainActivity extends ListActivity {
 
 				// init stuff.
 				Looper.prepare();
-				//dima
-                //cities = new GeonameList();
-                //jsonElement = getJsonObject(wsUrl, getApplicationContext());
-
+                //dima added
+                // Initialize variable which is represented weather observations
                 observationsJson = new WeatherObservations();
+                // Initialize variable which is represented service call error status
+                boolean error = false;
 
 
-				boolean error = false;
-
-				// build the webservice URL from parameters.
-				/*dima
+				/* dima depricated
                 String wsUrl = "http://api.geonames.org/citiesJSON?lang=en&username=allx1m1k";
 				wsUrl += "&north="+COORD_N;
 				wsUrl += "&south="+COORD_S;
 				wsUrl += "&east="+COORD_E;
 				wsUrl += "&west="+COORD_W;
 				*/
+
+                // build the webservice URL from parameters.
                 String wsUrl = "http://api.geonames.org/findNearByWeatherJSON?formatted=true";
                 wsUrl += "&lat="+COORD_LAT;
                 wsUrl += "&lng="+COORD_LNG;
                 wsUrl += "&username="+USRNAME;
                 wsUrl += "&style=full";
 
-
-
+                // Initialize variable which is represented String which was derived from request to web service
 				String wsResponse = "";
 
 				try {
 					// call the service via HTTP.
 					wsResponse = readStringFromUrl(wsUrl);
+                    // dima added
+                    // Initialize JsonObject variable with result of request to wev service
                     jsonObject = getJsonObject(wsResponse, getApplicationContext());
+                    // Initialize JsonElement variable within the particular name
                     jsonElement = jsonObject.get("weatherObservation");
-
-
-					// deserialize the JSON response to the cities objects.
-					//dima
-					// cities = new Gson().fromJson(wsResponse, GeonameList.class);
-                    //dima
-                    // observations = new Gson().fromJson(wsResponse, WeatherObservationList.class);
-                    //Type listType = new TypeToken<List<WeatherObservationList>>() {}.getType();
-                    //observations = new Gson().fromJson(wsResponse, listType);
-
-                    //get JsonElement
-                    //jsonObject = getJsonObject(wsUrl, getApplicationContext());
-
-
-
-                    //stackowerflow
-                    Gson gson = new Gson();
-                    JsonParser parser = new JsonParser();
-                    //JsonArray jArray = parser.parse(wsResponse).getAsJsonArray();
-                    //jsonObject = parser.parse(wsResponse).getAsJsonObject();
-
-
-
-                    //ArrayList<WeatherObservationList> lcs = new ArrayList<WeatherObservationList>();
-                    //Type listType = new TypeToken<List<WeatherObservations>>() {}.getType();
+                    // Initialize the target data structure which is represented by Json elements
                     observationsJson = new Gson().fromJson(jsonElement, WeatherObservations.class);
 
-/*
+                    /* dima depricated
                     for(JsonElement obj : jArray )
                     {
                         //channelSearchEnum cse = gson.fromJson( obj , channelSearchEnum.class);
@@ -166,8 +143,7 @@ public class JsonMainActivity extends ListActivity {
                         observations = new Gson().fromJson(wsResponse, listType);
                         lcs.add(observations);
                     }
-*/
-
+                    */
                 }
 				catch (IOException e) {
 					// IO exception
@@ -192,16 +168,16 @@ public class JsonMainActivity extends ListActivity {
 				else {
 					// everything ok: tell the handler to show cities list.
                     //Log.i(TAG, "Долгота JsonObj" + jsonObject.get("lng"));
-                    Log.i(TAG, "Долгота WeatheObservations" + observationsJson.getLat());
+                    Log.i(TAG, "Долгота WeatheObservations " + observationsJson.getLat());
+                    Log.i(TAG, "Дата WeatheObservations " + observationsJson.getDatetime());
+                    Log.i(TAG, "Температура WeatheObservations " + observationsJson.getTemperature());
                     handler.sendEmptyMessage(CODE_OK);
 				}
 			}
 		};
 
 		// start the thread.
-        //Log.i(TAG, "Weather found in callService: " + observations.getWeatherObservations().size());
 		loader.start();
-
 	}
 
     private void myBuildList() {
@@ -213,8 +189,9 @@ public class JsonMainActivity extends ListActivity {
         String line3; //Lat
         String line4; //Lng
 
-        // cycle on the cities and create list entries.
-/*
+        /* dima depricated
+         cycle on the cities and create list entries.
+
         for (WeatherObservations weather : observations.getWeatherObservations()) {
             currentChildMap = new HashMap<String, String>();
             data.add(currentChildMap);
@@ -230,10 +207,13 @@ public class JsonMainActivity extends ListActivity {
             currentChildMap.put("LAT", line3);
             currentChildMap.put("LNG", line4);
         }
+        */
 
-*/
         Log.i(TAG, "Долгота WeatheObservations for TextView is :" + observationsJson.getLat());
         Log.i(TAG, "Станция WeatheObservations for TextView is :" + observationsJson.getStationName());
+        Log.i(TAG, "Дата WeatheObservations for TextView is " + observationsJson.getDatetime());
+        Log.i(TAG, "Температура WeatheObservations for TextView is " + observationsJson.getTemperature());
+
 
         line1 = "Станция: " + observationsJson.getStationName();
         line2 = "Погодные условия: " + observationsJson.getWeatherCondition();
@@ -294,8 +274,8 @@ public class JsonMainActivity extends ListActivity {
 	    byte[] bufL = new byte[512];
 
 		if (checkConnectivity()) {
-			
-			try {
+
+            try {
 				URL url = new URL(fileURL);
 
 				long startTime = System.currentTimeMillis();

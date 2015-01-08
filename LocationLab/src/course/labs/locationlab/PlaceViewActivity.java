@@ -18,7 +18,7 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 	private static final String TAG = "Lab-Location";
 
 	// Set to false if you don't have network access
-	public static boolean sHasNetwork = false;
+	public static boolean sHasNetwork = true;
 
 	private Location mLastLocationReading;
 	private PlaceViewAdapter mAdapter;
@@ -77,7 +77,7 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
                         Toast.makeText(getApplicationContext(), "Locations intersects!!", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getApplicationContext(), "new PlaceDownloaderTask started!", Toast.LENGTH_SHORT).show();
-                        new PlaceDownloaderTask(PlaceViewActivity.this, false).execute(mLastLocationReading);
+                        new PlaceDownloaderTask(PlaceViewActivity.this, sHasNetwork).execute(mLastLocationReading);
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), "There is no current location!", Toast.LENGTH_SHORT).show();

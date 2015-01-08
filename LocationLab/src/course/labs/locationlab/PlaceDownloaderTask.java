@@ -82,8 +82,11 @@ public class PlaceDownloaderTask extends AsyncTask<Location, Void, PlaceRecord> 
 	@Override
 	protected PlaceRecord doInBackground(Location... location) {
 		PlaceRecord place = null;
+        Log.e(TAG, "mHasNetwork is: " + mHasNetwork);
 
 		if (mHasNetwork) {
+
+
 
 			// Get the PlaceBadge information
 			place = getPlaceFromURL(generateURL(USERNAME, location[0]));

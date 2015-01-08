@@ -220,10 +220,10 @@ public class JsonMainActivity extends Activity {
 
         // dima added
         // populate TextView with derived data
-        stationView.setText(observationsJson.getStationName());
-        latView.setText(observationsJson.getLat().toString());
-        lngView.setText(observationsJson.getLng().toString());
-        observationView.setText(observationsJson.getObservation());
+        stationView.setText("Станция: " + observationsJson.getStationName());
+        latView.setText("Широта: " + observationsJson.getLat().toString());
+        lngView.setText("Долгота: " + observationsJson.getLng().toString());
+        observationView.setText("Погода: " + observationsJson.getObservation());
 
         //dima depricated
         // setListAdapter(adapter);

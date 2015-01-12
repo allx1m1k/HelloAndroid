@@ -19,6 +19,7 @@ package ua.org.ua2012.weather;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -28,6 +29,8 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
@@ -45,6 +48,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
      * time.
      */
     ViewPager mViewPager;
+
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,6 +126,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                     // a launchpad into the other demonstrations in this example application.
                     return new LaunchpadSectionFragment();
 
+                case 1:
+                    // dima
+                    // The second section of the app offers bukmap layout
+                    return new BukMapSectionFragment();
+
                 default:
                     // The other sections of the app are dummy placeholders.
                     Fragment fragment = new DummySectionFragment();
@@ -181,6 +190,24 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                         }
                     });
 
+            return rootView;
+        }
+    }
+
+    /**
+     * dima
+     * A fragment that represent bukmap.
+     */
+    public static class BukMapSectionFragment extends Fragment {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            //View rootView = inflater.inflate(R.layout.fragment_section_launchpad, container, false);
+            // dima
+            //View rootView = inflater.inflate(R.layout.fragment_bukmap, container, false);
+            // Set up user interface
+            View rootView = inflater.inflate(R.layout.fragment_bukmap, container, false);
+            //rootView.setBackground(R.drawable.bukovel);
             return rootView;
         }
     }

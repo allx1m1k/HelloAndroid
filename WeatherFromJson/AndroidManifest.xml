@@ -42,6 +42,7 @@
 
         <activity android:name=".CollectionDemoActivity" android:label="@string/demo_collection" />
         <activity android:name=".JsonMainActivity" android:label="@string/demo_collection" />
+        <activity android:name=".BukovelMapActivity" android:label="@string/bukovel_map" />
 
     </application>
 </manifest>

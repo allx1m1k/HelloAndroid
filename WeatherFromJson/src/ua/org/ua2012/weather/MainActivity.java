@@ -143,7 +143,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         @Override
         public int getCount() {
-            return 3;
+            return 2;
         }
 
         @Override
@@ -162,13 +162,24 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_section_launchpad, container, false);
 
-            // Demonstration of a collection-browsing activity.
+            // Start request to geonames.
             rootView.findViewById(R.id.demo_collection_button)
                     .setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             //Intent intent = new Intent(getActivity(), CollectionDemoActivity.class);
                             Intent intent = new Intent(getActivity(), JsonMainActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+
+            // Demonstration of a collection-browsing activity.
+            rootView.findViewById(R.id.bukovel_map)
+                    .setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            //Intent intent = new Intent(getActivity(), CollectionDemoActivity.class);
+                            Intent intent = new Intent(getActivity(),BukovelMapActivity.class );
                             startActivity(intent);
                         }
                     });

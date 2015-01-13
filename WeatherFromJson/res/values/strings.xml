@@ -21,5 +21,6 @@
 
     <string name="demo_external_activity">Demo External Activity</string>
     <string name="demo_collection">Demo Collection</string>
+    <string name="bukovel_map">Карта трасс</string>
     <string name="menu_settings">Settings</string>
 </resources>

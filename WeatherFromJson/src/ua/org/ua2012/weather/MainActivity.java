@@ -213,6 +213,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+        /*
+        * http://codetheory.in/using-a-scrollable-viewgroup-in-a-scrollview/
+        *
+        */
+
             //View rootView = inflater.inflate(R.layout.fragment_section_launchpad, container, false);
             // dima
             //View rootView = inflater.inflate(R.layout.fragment_bukmap, container, false);

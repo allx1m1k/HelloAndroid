@@ -15,12 +15,12 @@
   -->
 
 <resources>
-    <string name="app_name">Effective Navigation</string>
+    <string name="app_name">SnowIt</string>
 
     <string name="dummy_section_text">Section %1d is just a dummy section.</string>
 
     <string name="demo_external_activity">Demo External Activity</string>
-    <string name="demo_collection">Demo Collection</string>
-    <string name="bukovel_map">Карта трасс</string>
+    <string name="demo_collection">Погода в Буковеле</string>
+    <string name="bukovel_map">Карта трасс Буковеля</string>
     <string name="menu_settings">Settings</string>
 </resources>

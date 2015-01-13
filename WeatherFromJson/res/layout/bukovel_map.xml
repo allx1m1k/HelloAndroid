@@ -1,12 +1,14 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scrolly"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/bukovel_big_map"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/bukovel" />
+            android:layout_height="wrap_content"/>
 
-</RelativeLayout>
+</ScrollView>
+
+
 

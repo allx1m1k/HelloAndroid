@@ -20,7 +20,7 @@ public class BukovelMapActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        Toast.makeText(getApplicationContext(), "Разверните экран чтобы сделать карту больше!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), R.string.attention_message, Toast.LENGTH_LONG).show();
     }
 
     @Override

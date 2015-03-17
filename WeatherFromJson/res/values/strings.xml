@@ -17,10 +17,12 @@
 <resources>
     <string name="app_name">SnowIt</string>
 
-    <string name="dummy_section_text">Section %1d is just a dummy section.</string>
+    <string name="dummy_section_text">Секция %1d просто заглушка.</string>
 
-    <string name="demo_external_activity">Demo External Activity</string>
+    <string name="demo_external_activity">Демо внешний activity</string>
     <string name="demo_collection">Погода в Буковеле</string>
-    <string name="bukovel_map">Карта трасс Буковеля</string>
-    <string name="menu_settings">Settings</string>
+    <string name="bukovel_map">Карта трасс</string>
+    <string name="menu_settings">Настройки</string>
+    <string name="attention_message">Разверните экран чтобы сделать карту больше!</string>
+    <string name="gui_section">Секция</string>
 </resources>

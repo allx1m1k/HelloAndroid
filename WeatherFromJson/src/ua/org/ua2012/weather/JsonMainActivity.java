@@ -3,18 +3,15 @@ package ua.org.ua2012.weather;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.*;
 
 import android.app.Activity;
-import android.widget.ListView;
 import android.widget.TextView;
 import com.google.gson.*;
 import org.apache.http.util.ByteArrayBuffer;
-import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -68,16 +65,16 @@ public class JsonMainActivity extends Activity {
         // Initialize tha Activity UI
 
         setContentView(R.layout.mysimple_list_item_2);
-        stationView = (TextView) findViewById(R.id.text1);
-        latView = (TextView) findViewById(R.id.text2);
-        lngView = (TextView) findViewById(R.id.text3);
-        observationView = (TextView) findViewById(R.id.text4);
+        stationView = (TextView) findViewById(R.id.station);
+        latView = (TextView) findViewById(R.id.latitude);
+        lngView = (TextView) findViewById(R.id.longitude);
+        observationView = (TextView) findViewById(R.id.weather);
 
 
 		/*
 		View rootView = inflater.inflate(R.layout.fragment_section_dummy, container, false);
         Bundle args = getArguments();
-        ((TextView) rootView.findViewById(android.R.id.text1)).setText(
+        ((TextView) rootView.findViewById(android.R.id.station)).setText(
                     getString(R.string.dummy_section_text, args.getInt(ARG_SECTION_NUMBER)));
 
 
@@ -220,10 +217,10 @@ public class JsonMainActivity extends Activity {
 
         // dima added
         // populate TextView with derived data
-        stationView.setText("Станция: " + observationsJson.getStationName());
-        latView.setText("Широта: " + observationsJson.getLat().toString());
-        lngView.setText("Долгота: " + observationsJson.getLng().toString());
-        observationView.setText("Погода: " + observationsJson.getObservation());
+        stationView.setText(getString(R.string.station_name) + observationsJson.getStationName());
+        latView.setText(getString(R.string.latitude_val) + observationsJson.getLat().toString());
+        lngView.setText(getString(R.string.longitude_val) + observationsJson.getLng().toString());
+        observationView.setText(getString(R.string.weather_data) + observationsJson.getObservation());
 
         //dima depricated
         // setListAdapter(adapter);
@@ -234,8 +231,8 @@ public class JsonMainActivity extends Activity {
 		// init stuff.
 		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
 		Map<String, String> currentChildMap = null;
-		String line1;
-		String line2;
+		String line1; //weather station
+		String line2; //
         String line3; //Lat
         String line4; //Lng
 	
@@ -260,9 +257,9 @@ public class JsonMainActivity extends Activity {
 		//adapter = new SimpleAdapter(this, data, android.R.layout.simple_list_item_2,
         adapter = new SimpleAdapter(this, data, R.layout.mysimple_list_item_2,
 				new String[] { "LABEL", "TEXT", "LAT", "LNG" },
-                new int[] { R.id.text1, R.id.text2, R.id.text3, R.id.text4 });
+                new int[] { R.id.station, R.id.latitude, R.id.longitude, R.id.weather});
 				//dima
-				// new int[] { android.R.id.text1, android.R.id.text2 });
+				// new int[] { android.R.id.station, android.R.id.text2 });
 
         //setListAdapter(adapter);
 	}

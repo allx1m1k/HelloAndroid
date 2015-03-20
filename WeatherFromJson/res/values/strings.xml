@@ -25,4 +25,8 @@
     <string name="menu_settings">Настройки</string>
     <string name="attention_message">Разверните экран чтобы сделать карту больше!</string>
     <string name="gui_section">Секция</string>
+    <string name="station_name">Метеостанция: </string>
+    <string name="latitude_val">Широта: </string>
+    <string name="longitude_val">Долгота: </string>
+    <string name="weather_data">Погода: </string>
 </resources>

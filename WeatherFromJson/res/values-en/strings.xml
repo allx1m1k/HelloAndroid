@@ -11,4 +11,8 @@
     <string name="menu_settings">Settings</string>
     <string name="attention_message">Turn in order to enlarge</string>
     <string name="gui_section">Section</string>
+    <string name="station_name">Weather Station: </string>
+    <string name="latitude_val">Latitude: </string>
+    <string name="longitude_val">Longitude: </string>
+    <string name="weather_data">Weather: </string>
 </resources>

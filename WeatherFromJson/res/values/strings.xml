@@ -31,4 +31,6 @@
     <string name="weather_data">Погода: </string>
     <string name="temperature_data">Температура: </string>
     <string name="datetime_data">Погода на: </string>
+    <string name="calling_webservice">Соединение с сервером...</string>
+    <string name="loading">Загружаем...</string>
 </resources>

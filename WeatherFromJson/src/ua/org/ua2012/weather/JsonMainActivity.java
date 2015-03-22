@@ -122,7 +122,7 @@ public class JsonMainActivity extends Activity {
 	
 	private void callService() {
 		// Show a loading dialog.
-		dialog = ProgressDialog.show(this, "Loading", "Calling GeoNames web service...", true, false);
+		dialog = ProgressDialog.show(this, getString(R.string.loading), getString(R.string.calling_webservice), true, false);
 
 		// Create the thread that calls the webservice.
 		Thread loader = new Thread() {

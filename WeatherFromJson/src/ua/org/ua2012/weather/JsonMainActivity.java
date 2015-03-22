@@ -66,11 +66,12 @@ public class JsonMainActivity extends Activity {
         // dima
         // Initialize tha Activity UI
 
-        setContentView(R.layout.mysimple_list_item_2);
+        //setContentView(R.layout.mysimple_list_item_2);
+        setContentView(R.layout.fragment_weather);
         stationView = (TextView) findViewById(R.id.station);
-        latView = (TextView) findViewById(R.id.latitude);
-        lngView = (TextView) findViewById(R.id.longitude);
-        observationView = (TextView) findViewById(R.id.weather);
+        //latView = (TextView) findViewById(R.id.latitude);
+        //lngView = (TextView) findViewById(R.id.longitude);
+        //observationView = (TextView) findViewById(R.id.weather);
         datetimeView = (TextView) findViewById(R.id.datetime);
         temperatureView = (TextView) findViewById(R.id.temperature);
 
@@ -222,9 +223,9 @@ public class JsonMainActivity extends Activity {
         // dima added
         // populate TextView with derived data
         stationView.setText(getString(R.string.station_name) + observationsJson.getStationName());
-        latView.setText(getString(R.string.latitude_val) + observationsJson.getLat().toString());
-        lngView.setText(getString(R.string.longitude_val) + observationsJson.getLng().toString());
-        observationView.setText(getString(R.string.weather_data) + observationsJson.getObservation());
+        //latView.setText(getString(R.string.latitude_val) + observationsJson.getLat().toString());
+        //lngView.setText(getString(R.string.longitude_val) + observationsJson.getLng().toString());
+        //observationView.setText(getString(R.string.weather_data) + observationsJson.getObservation());
         datetimeView.setText(getString(R.string.datetime_data) + observationsJson.getDatetime());
         temperatureView.setText(getString(R.string.temperature_data) + observationsJson.getTemperature());
 

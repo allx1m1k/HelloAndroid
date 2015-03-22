@@ -15,4 +15,6 @@
     <string name="latitude_val">Latitude: </string>
     <string name="longitude_val">Longitude: </string>
     <string name="weather_data">Weather: </string>
+    <string name="temperature_data">Temperature: </string>
+    <string name="datetime_data">Weather conditions on: </string>
 </resources>

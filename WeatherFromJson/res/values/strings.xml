@@ -29,4 +29,6 @@
     <string name="latitude_val">Широта: </string>
     <string name="longitude_val">Долгота: </string>
     <string name="weather_data">Погода: </string>
+    <string name="temperature_data">Температура: </string>
+    <string name="datetime_data">Погода на: </string>
 </resources>

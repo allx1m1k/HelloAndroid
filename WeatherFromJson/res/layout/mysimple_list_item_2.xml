@@ -57,6 +57,24 @@
         android:text="@string/weather_data"
         />
 
+    <TextView
+        android:id="@+id/datetime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/datetime_data"
+        android:layout_below="@+id/weather"
+        android:layout_alignLeft="@+id/weather"
+        android:layout_alignStart="@id/station" />
+
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/temperature_data"
+        android:layout_below="@+id/datetime"
+        android:layout_alignLeft="@+id/datetime"
+        android:layout_alignStart="@id/station" />
+
 </RelativeLayout>
 
 

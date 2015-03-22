@@ -57,6 +57,8 @@ public class JsonMainActivity extends Activity {
     private static TextView latView;
     private static TextView lngView;
     private static TextView observationView;
+    private static TextView datetimeView;
+    private static TextView temperatureView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,8 @@ public class JsonMainActivity extends Activity {
         latView = (TextView) findViewById(R.id.latitude);
         lngView = (TextView) findViewById(R.id.longitude);
         observationView = (TextView) findViewById(R.id.weather);
+        datetimeView = (TextView) findViewById(R.id.datetime);
+        temperatureView = (TextView) findViewById(R.id.temperature);
 
 
 		/*
@@ -221,6 +225,8 @@ public class JsonMainActivity extends Activity {
         latView.setText(getString(R.string.latitude_val) + observationsJson.getLat().toString());
         lngView.setText(getString(R.string.longitude_val) + observationsJson.getLng().toString());
         observationView.setText(getString(R.string.weather_data) + observationsJson.getObservation());
+        datetimeView.setText(getString(R.string.datetime_data) + observationsJson.getDatetime());
+        temperatureView.setText(getString(R.string.temperature_data) + observationsJson.getTemperature());
 
         //dima depricated
         // setListAdapter(adapter);

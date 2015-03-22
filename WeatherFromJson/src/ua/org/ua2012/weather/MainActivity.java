@@ -82,7 +82,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 actionBar.setSelectedNavigationItem(position);
             }
         });
-
+/* dima 20150322 depricated, instead we add 2 actionTab manually, see below
         // For each of the sections in the app, add a tab to the action bar.
         for (int i = 0; i < mAppSectionsPagerAdapter.getCount(); i++) {
             // Create a tab with text corresponding to the page title defined by the adapter.
@@ -90,9 +90,20 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             // listener for when this tab is selected.
             actionBar.addTab(
                     actionBar.newTab()
-                            .setText(mAppSectionsPagerAdapter.getPageTitle(i))
+                            //.setText(mAppSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
+*/
+        //dima 20150322
+        //actionBar.setTitle(getString(R.string.section));
+        //actionBar.addTab(actionBar.newTab().setCustomView(R.layout.fragment_section_launchpad), 0);
+        //actionBar.addTab(actionBar.newTab().setCustomView(R.layout.fragment_bukmap), 1);
+        actionBar.addTab(actionBar.newTab()
+                .setText(R.string.section1)
+                .setTabListener(this));
+        actionBar.addTab(actionBar.newTab()
+                .setText(R.string.section2)
+                .setTabListener(this));
     }
 
     @Override
@@ -147,10 +158,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             return 2;
         }
 
+/*
         @Override
         public CharSequence getPageTitle(int position) {
             return "Section" + (position + 1);
         }
+
+*/
     }
 
     /**
@@ -225,6 +239,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             // Set up user interface
             View rootView = inflater.inflate(R.layout.fragment_bukmap, container, false);
             //rootView.setBackground(R.drawable.bukovel);
+
             return rootView;
         }
     }

@@ -33,4 +33,6 @@
     <string name="datetime_data">Погода на: </string>
     <string name="calling_webservice">Соединение с сервером...</string>
     <string name="loading">Загружаем...</string>
+    <string name="section1">Меню</string>
+    <string name="section2">Карта</string>
 </resources>

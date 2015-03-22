@@ -199,6 +199,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                         }
                     });
 
+/*dima 20150322 depricated external activity
             // Demonstration of navigating to external activities.
             rootView.findViewById(R.id.demo_external_activity)
                     .setOnClickListener(new View.OnClickListener() {
@@ -215,7 +216,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                             startActivity(externalActivityIntent);
                         }
                     });
-
+*/
             return rootView;
         }
     }
